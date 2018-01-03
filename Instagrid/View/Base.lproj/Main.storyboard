@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="width" secondItem="tZq-uM-6yk" secondAttribute="height" multiplier="1:1" id="0cy-3L-LPT"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Layout 1" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-hA-EDF">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Carre1" translatesAutoresizingMaskIntoConstraints="NO" id="OBJ-hA-EDF">
                                 <rect key="frame" x="35" y="641" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OBJ-hA-EDF" secondAttribute="height" multiplier="1:1" id="TRg-t4-uIM"/>
@@ -46,7 +46,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Layout 2" translatesAutoresizingMaskIntoConstraints="NO" id="wST-sF-w8s">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Carre2" translatesAutoresizingMaskIntoConstraints="NO" id="wST-sF-w8s">
                                 <rect key="frame" x="167" y="641" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wST-sF-w8s" secondAttribute="height" multiplier="1:1" id="WZV-Yl-Xqn"/>
@@ -130,7 +130,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Layout 3" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-Hg-tu0">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="Carre3" translatesAutoresizingMaskIntoConstraints="NO" id="l9K-Hg-tu0">
                                 <rect key="frame" x="299" y="641" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="l9K-Hg-tu0" secondAttribute="height" multiplier="1:1" id="0rY-vA-UD2"/>
@@ -342,10 +342,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Carre1" width="80" height="80"/>
+        <image name="Carre2" width="80" height="80"/>
+        <image name="Carre3" width="80" height="80"/>
         <image name="FlecheTop" width="15" height="10"/>
         <image name="Flecheleft" width="10" height="15"/>
-        <image name="Layout 1" width="80" height="80"/>
-        <image name="Layout 2" width="80" height="80"/>
-        <image name="Layout 3" width="80" height="80"/>
     </resources>
 </document>
