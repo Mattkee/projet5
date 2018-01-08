@@ -8,13 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,
+    UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
 
+    var modifiedImage : UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //1
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        displayImageView()
+        disposition2()
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(shareContent(_:)))
+        actionShareView.addGestureRecognizer(panGestureRecognizer)
+        
         
     }
     
@@ -47,53 +55,234 @@ class ViewController: UIViewController {
     @IBOutlet weak var shareView: UIView!
     @IBOutlet weak var textLabel: UILabel!
     
-    func displayImageView(){
+    @IBOutlet weak var actionShareView: UIView!
+    @IBOutlet weak var button1: UIButton!
+    
+    @IBOutlet weak var button2: UIButton!
+    
+    @IBOutlet weak var button3: UIButton!
+    
+    var modifiedButton : UIButton!
+    
+    @objc func modifiedButtonBackground (sender : UIButton) {
+        modifiedButton = sender
+        openPhotoLibraryButton(sender: modifiedButton)
+    }
+    
+    @IBAction func button1selec(_ sender: Any) {
+        button1.isSelected = true
+        button2.isSelected = false
+        button3.isSelected = false
+        button1.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
+        disposition1()
+    }
+    
+    @IBAction func button2selec(_ sender: Any) {
+        button1.isSelected = false
+        button2.isSelected = true
+        button3.isSelected = false
+        button2.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
+        disposition2()
+    }
+    
+    @IBAction func button3selec(_ sender: Any) {
+        button1.isSelected = false
+        button2.isSelected = false
+        button3.isSelected = true
+        button3.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
+        disposition3()
+    }
+    let view1 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let view2 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let view3 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let view4 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    
+    func launchAction(sender : UIButton) {
+        sender.addTarget(self, action: #selector(modifiedButtonBackground(sender:)), for: .touchUpInside)
+    }
+    
+    func defineStackView (viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
         
-        let view1 = UIImageView(image: #imageLiteral(resourceName: "croixbleu"))
+        let stackView = UIStackView(arrangedSubviews: viewArray)
+        stackView.axis = axe
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+        
+    }
+    
+    func stackViewContraint (stackView : UIStackView) {
+        
+        let ViewsDictionary = ["stackView": stackView]
+        let stackView_H = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[stackView]-10-|",  //horizontal constraint 10 points from left and right side
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: ViewsDictionary)
+        let stackView_V = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[stackView]-10-|", //vertical constraint 10 points from top and bottom
+            options: NSLayoutFormatOptions(rawValue:0),
+            metrics: nil,
+            views: ViewsDictionary)
+        shareView.addConstraints(stackView_H)
+        shareView.addConstraints(stackView_V)
+    }
+    
+    func disposition1(){
+        view4.isHidden = true
+        
+        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
         shareView.addSubview(view1)
+        launchAction(sender: view1)
         
-        let view2 = UIImageView(image: #imageLiteral(resourceName: "croixbleu"))
+        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        let view3 = UIImageView(image: #imageLiteral(resourceName: "recbleu"))
+        view3.setBackgroundImage(#imageLiteral(resourceName: "recbleu"), for: .normal)
+        launchAction(sender: view3)
+        shareView.addSubview(view3)
+        
+        let tabView = [view1,view2]
+        
+        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
+        
+        
+        let princView = [view3, tabViewStackView]
+        
+        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
+        
+        shareView.addSubview(stackViewSecond)
+        
+        stackViewContraint(stackView: stackViewSecond)
+        
+    }
+    
+    func disposition2(){
+        view4.isHidden = true
+        
+        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        shareView.addSubview(view1)
+        launchAction(sender: view1)
+        
+        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        launchAction(sender: view2)
+        shareView.addSubview(view2)
+        
+        view3.setBackgroundImage(#imageLiteral(resourceName: "recbleu"), for: .normal)
+        launchAction(sender: view3)
         shareView.addSubview(view3)
         
         
         let tabView = [view1,view2]
         
-        
-        let stackView = UIStackView(arrangedSubviews: tabView)
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
         
         
-        let princView = [stackView,view3]
+        let princView = [tabViewStackView,view3]
         
-        let stackViewSecond = UIStackView(arrangedSubviews: princView)
-        stackViewSecond.axis = .vertical
-        stackViewSecond.distribution = .fillEqually
-        stackViewSecond.alignment = .fill
-        stackViewSecond.spacing = 8
-        stackViewSecond.translatesAutoresizingMaskIntoConstraints = false
+        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
+        
         shareView.addSubview(stackViewSecond)
-        let secondViewsDictionary = ["stackViewSecond":stackViewSecond]
-        let stackViewSecond_H = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[stackViewSecond]-10-|",  //horizontal constraint 10 points from left and right side
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: secondViewsDictionary)
-        let stackViewSecond_V = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[stackViewSecond]-10-|", //vertical constraint 10 points from top and bottom
-            options: NSLayoutFormatOptions(rawValue:0),
-            metrics: nil,
-            views: secondViewsDictionary)
-        shareView.addConstraints(stackViewSecond_H)
-        shareView.addConstraints(stackViewSecond_V)
+        
+        stackViewContraint(stackView: stackViewSecond)
         
     }
     
+    func disposition3(){
+        view4.isHidden = false
+        
+        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        shareView.addSubview(view1)
+        launchAction(sender: view1)
+        
+        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        launchAction(sender: view2)
+        shareView.addSubview(view2)
+        
+        view3.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        launchAction(sender: view3)
+        shareView.addSubview(view3)
+        
+        view4.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        launchAction(sender: view4)
+        shareView.addSubview(view4)
+        
+        
+        let tabView = [view1,view2]
+        let tabView2 = [view3,view4]
+        
+        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
+        
+        let tabView2StackView = defineStackView(viewArray:tabView2, axe : .horizontal)
+        
+        
+        let princView = [tabViewStackView,tabView2StackView]
+        
+        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
+        
+        shareView.addSubview(stackViewSecond)
+        
+        stackViewContraint(stackView: stackViewSecond)
+        
+    }
+    
+    @objc func openPhotoLibraryButton(sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        modifiedButton.setBackgroundImage(image, for: .normal)
+        
+        dismiss(animated:true, completion: nil)
+    }
+    
+    @objc func shareContent(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began, .changed:
+            transformShareContentViewWith(gesture: sender)
+        case .ended, .cancelled:
+            share()
+        default:
+            break
+        }
+    }
+    
+    func transformShareContentViewWith(gesture: UIPanGestureRecognizer){
+        let translation = gesture.translation(in: actionShareView)
+        
+        let transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        actionShareView.transform = transform
+    }
+    func share(){
+        actionShareView.transform = .identity
+        
+        let image = UIImage.imageWithView(view: shareView)
+        
+        let contentToShare = [image]
+        
+        let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
+    }
 }
 
+extension UIImage {
+    class func imageWithView(view: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
