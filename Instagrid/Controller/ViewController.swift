@@ -228,6 +228,15 @@ UINavigationControllerDelegate {
         stackViewContraint(stackView: stackViewSecond)
         
     }
+    @objc func openCameraButton(sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
     
     @objc func openPhotoLibraryButton(sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -284,5 +293,14 @@ extension UIImage {
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return img!
+    }
+}
+extension UIImagePickerController
+{
+    override open var shouldAutorotate: Bool {
+        return true
+    }
+    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        return .all
     }
 }
