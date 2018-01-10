@@ -20,8 +20,19 @@ UINavigationControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
         
-        let Swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
-        actionShareView.addGestureRecognizer(Swipe)
+        let swipeAnime = UIPanGestureRecognizer(target: self, action: #selector(shareContentAnime(gesture :)))
+        actionShareView.addGestureRecognizer(swipeAnime)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(shareContent(gesture:)))
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(shareContent(gesture:)))
+        
+        
+        swipeLeft.direction = .left
+        swipeUp.direction = .up
+        
+        
+        actionShareView.addGestureRecognizer(swipeUp)
+        actionShareView.addGestureRecognizer(swipeLeft)
     }
     
     deinit {
@@ -254,7 +265,7 @@ UINavigationControllerDelegate {
         dismiss(animated:true, completion: nil)
     }
     
-    @objc func shareContent(gesture : UIPanGestureRecognizer) {
+    @objc func shareContentAnime(gesture : UIPanGestureRecognizer) {
         switch gesture.state {
         case .began, .changed:
             switch UIDevice.current.orientation {
@@ -273,13 +284,25 @@ UINavigationControllerDelegate {
             default :
                     transformShareContentViewWith(gesture: gesture)
                 }
-        case .ended, .cancelled:
-            share()
+        case .ended, .cancelled :
+            actionShareView.transform = .identity
+            //share()
         default:
             break
         }
     }
     
+    @objc func shareContent(gesture : UISwipeGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            print("c'est bon ici")
+        case .ended, .cancelled :
+            print ("c'est fini")
+            share()
+        default:
+            break
+        }
+    }
     func transformShareContentViewWith(gesture: UIPanGestureRecognizer){
         
         switch UIDevice.current.orientation {
@@ -298,20 +321,21 @@ UINavigationControllerDelegate {
                     actionShareView.transform = transform
                 }
             default :
-                print("")
+                break
         }
         
     }
     
     func share(){
         actionShareView.transform = .identity
-        
+        print("c'est bon ici")
         let image = UIImage.imageWithView(view: shareView)
         
-        let contentToShare = [image]
+            let contentToShare = [image]
         
-        let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
-        present(activityViewController, animated: true, completion: nil)
+            let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
+            present(activityViewController, animated: true, completion: nil)
+        
     }
 }
 
