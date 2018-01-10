@@ -20,10 +20,8 @@ UINavigationControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
         
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(shareContent(_:)))
-        actionShareView.addGestureRecognizer(panGestureRecognizer)
-        
-        
+        let Swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
+        actionShareView.addGestureRecognizer(Swipe)
     }
     
     deinit {
@@ -256,10 +254,25 @@ UINavigationControllerDelegate {
         dismiss(animated:true, completion: nil)
     }
     
-    @objc func shareContent(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
+    @objc func shareContent(gesture : UIPanGestureRecognizer) {
+        switch gesture.state {
         case .began, .changed:
-            transformShareContentViewWith(gesture: sender)
+            switch UIDevice.current.orientation {
+                case .portrait :
+                    let translation = gesture.translation(in: actionShareView)
+                    
+                    if translation.y < 0 {
+                        transformShareContentViewWith(gesture: gesture)
+                    }
+                case .landscapeLeft, .landscapeRight :
+                    let translation = gesture.translation(in: actionShareView)
+                    
+                    if translation.x < 0 {
+                        transformShareContentViewWith(gesture: gesture)
+                    }
+            default :
+                    transformShareContentViewWith(gesture: gesture)
+                }
         case .ended, .cancelled:
             share()
         default:
@@ -268,12 +281,28 @@ UINavigationControllerDelegate {
     }
     
     func transformShareContentViewWith(gesture: UIPanGestureRecognizer){
-        let translation = gesture.translation(in: actionShareView)
         
-        let transform = CGAffineTransform(translationX: 0, y: translation.y)
+        switch UIDevice.current.orientation {
+            case .portrait :
+                let translation = gesture.translation(in: actionShareView)
+                
+                if translation.y < 0 {
+                    let transform = CGAffineTransform(translationX: 0, y: translation.y)
+                    actionShareView.transform = transform
+                }
+            case .landscapeLeft, .landscapeRight :
+                let translation = gesture.translation(in: actionShareView)
+                
+                if translation.x < 0 {
+                    let transform = CGAffineTransform(translationX: translation.x, y: 0)
+                    actionShareView.transform = transform
+                }
+            default :
+                print("")
+        }
         
-        actionShareView.transform = transform
     }
+    
     func share(){
         actionShareView.transform = .identity
         

@@ -72,6 +72,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Azy-P3-PfV" firstAttribute="centerX" secondItem="209-lc-BIX" secondAttribute="centerX" id="29O-km-NaG"/>
                                     <constraint firstAttribute="width" constant="349" id="5fK-Sy-UZr"/>
