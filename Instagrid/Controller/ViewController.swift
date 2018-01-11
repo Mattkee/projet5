@@ -27,8 +27,9 @@ UINavigationControllerDelegate {
         //1
         
         blurView.layer.cornerRadius = 15
-        viewContraint.constant = -250
-        
+        var translationTransform: CGAffineTransform
+        translationTransform = CGAffineTransform(translationX: 0, y: 150)
+        self.slideView.transform = translationTransform
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
@@ -111,13 +112,34 @@ UINavigationControllerDelegate {
     
     @IBAction func openCamera(_ sender: UIButton) {
         buttonBackgroundWithCamera (sender: modifiedButton)
-        viewContraint.constant = -250
+        var translationTransform : CGAffineTransform
+        translationTransform = CGAffineTransform(translationX: 0, y: 150)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.slideView.transform = translationTransform
+        })
     }
     
     @IBAction func openPhotoLibrary(_ sender: UIButton) {
         buttonBackgroundwithPhotoLibrary(sender: modifiedButton)
-        viewContraint.constant = -250
+        var translationTransform : CGAffineTransform
+        translationTransform = CGAffineTransform(translationX: 0, y: 150)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.slideView.transform = translationTransform
+        })
     }
+    
+    @IBAction func cancelSlide(_ sender: Any) {
+        var translationTransform : CGAffineTransform
+        translationTransform = CGAffineTransform(translationX: 0, y: 150)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.slideView.transform = translationTransform
+        })
+        
+    }
+    
     
     let view1 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let view2 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -130,7 +152,13 @@ UINavigationControllerDelegate {
     
     @objc func rightSlide(sender : UIButton) {
         modifiedButton = sender
-        viewContraint.constant = 0
+        var translationTransform: CGAffineTransform
+        translationTransform = CGAffineTransform(translationX: 0, y: 0)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.slideView.transform = translationTransform
+        })
+        
     }
     
     func defineStackView (viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {

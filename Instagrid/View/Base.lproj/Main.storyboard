@@ -153,16 +153,16 @@
                                 <variation key="heightClass=compact" axis="vertical"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpp-1t-7Vc">
-                                <rect key="frame" x="164" y="0.0" width="250" height="736"/>
+                                <rect key="frame" x="0.0" y="586" width="414" height="150"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoX-fM-LbZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="736"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AqP-r9-MBR">
-                                            <rect key="frame" x="0.0" y="0.0" width="250" height="736"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtI-sC-FhW">
-                                                    <rect key="frame" x="10" y="50" width="230.33333333333334" height="30"/>
+                                                    <rect key="frame" x="10" y="10" width="394.66666666666669" height="30"/>
                                                     <color key="backgroundColor" red="0.053118310869999998" green="0.4273664653" blue="0.61390143630000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Open Camera">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -177,7 +177,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wv-DE-9Z3">
-                                                    <rect key="frame" x="10" y="99" width="230.33333333333334" height="30"/>
+                                                    <rect key="frame" x="10" y="59" width="394.66666666666669" height="30"/>
                                                     <color key="backgroundColor" red="0.053118310869999998" green="0.4273664653" blue="0.61390143630000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Open Photo Library">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,16 +191,28 @@
                                                         <action selector="openPhotoLibrary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iap-BB-uok"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6K-qR-lYn">
+                                                    <rect key="frame" x="10" y="107" width="394.66666666666669" height="30"/>
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelSlide:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5pa-wu-990"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="p6K-qR-lYn" firstAttribute="width" secondItem="8Wv-DE-9Z3" secondAttribute="width" id="2Ni-d2-bjT"/>
                                                 <constraint firstItem="8Wv-DE-9Z3" firstAttribute="width" secondItem="jtI-sC-FhW" secondAttribute="width" id="6N3-R6-RRP"/>
+                                                <constraint firstItem="p6K-qR-lYn" firstAttribute="height" secondItem="8Wv-DE-9Z3" secondAttribute="height" id="7Sf-vK-xDM"/>
                                                 <constraint firstItem="jtI-sC-FhW" firstAttribute="leading" secondItem="AqP-r9-MBR" secondAttribute="leading" constant="10" id="I0B-6T-ryO"/>
                                                 <constraint firstItem="8Wv-DE-9Z3" firstAttribute="top" secondItem="jtI-sC-FhW" secondAttribute="bottom" constant="19" id="OjF-EP-TND"/>
                                                 <constraint firstItem="8Wv-DE-9Z3" firstAttribute="height" secondItem="jtI-sC-FhW" secondAttribute="height" id="P2O-x1-wcX"/>
                                                 <constraint firstItem="8Wv-DE-9Z3" firstAttribute="leading" secondItem="jtI-sC-FhW" secondAttribute="leading" id="Sit-hZ-slk"/>
                                                 <constraint firstItem="jtI-sC-FhW" firstAttribute="centerX" secondItem="AqP-r9-MBR" secondAttribute="centerX" id="ZIc-76-ZFj"/>
+                                                <constraint firstItem="p6K-qR-lYn" firstAttribute="top" secondItem="8Wv-DE-9Z3" secondAttribute="bottom" constant="18" id="h3r-YR-s1y"/>
+                                                <constraint firstItem="p6K-qR-lYn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Wv-DE-9Z3" secondAttribute="leading" id="knx-h1-Zp6"/>
+                                                <constraint firstAttribute="trailing" secondItem="p6K-qR-lYn" secondAttribute="trailing" constant="9.6666666666666856" id="oOO-QH-eDk"/>
                                                 <constraint firstItem="8Wv-DE-9Z3" firstAttribute="centerX" secondItem="jtI-sC-FhW" secondAttribute="centerX" id="tDL-Bn-gNV"/>
-                                                <constraint firstItem="jtI-sC-FhW" firstAttribute="top" secondItem="AqP-r9-MBR" secondAttribute="top" constant="50" id="txm-zw-5JW"/>
+                                                <constraint firstItem="jtI-sC-FhW" firstAttribute="top" secondItem="AqP-r9-MBR" secondAttribute="top" constant="10" id="txm-zw-5JW"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -208,11 +220,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="7tG-kT-TGK"/>
                                     <constraint firstItem="MoX-fM-LbZ" firstAttribute="width" secondItem="Tpp-1t-7Vc" secondAttribute="width" id="Jap-zj-BnG"/>
                                     <constraint firstItem="MoX-fM-LbZ" firstAttribute="centerY" secondItem="Tpp-1t-7Vc" secondAttribute="centerY" id="OGR-7X-OJ0"/>
                                     <constraint firstItem="MoX-fM-LbZ" firstAttribute="height" secondItem="Tpp-1t-7Vc" secondAttribute="height" id="faI-NA-3to"/>
                                     <constraint firstItem="MoX-fM-LbZ" firstAttribute="centerX" secondItem="Tpp-1t-7Vc" secondAttribute="centerX" id="hzG-zh-u14"/>
-                                    <constraint firstAttribute="width" constant="250" id="sZZ-uq-r44"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -237,7 +249,6 @@
                             <constraint firstItem="3PR-Yf-yDR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RFV-qM-veQ">
                                 <variation key="heightClass=compact" constant="5"/>
                             </constraint>
-                            <constraint firstItem="Tpp-1t-7Vc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RHk-Qa-MTU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tZq-uM-6yk" secondAttribute="bottom" constant="8" id="Rcm-Pw-crH">
                                 <variation key="heightClass=compact" constant="15"/>
                             </constraint>
@@ -249,6 +260,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hex-CX-QjI" secondAttribute="bottom" constant="8" id="eKw-ZS-djG"/>
                             <constraint firstItem="Hex-CX-QjI" firstAttribute="leading" secondItem="tZq-uM-6yk" secondAttribute="leading" id="fQX-IZ-ihM"/>
                             <constraint firstAttribute="trailing" secondItem="Tpp-1t-7Vc" secondAttribute="trailing" id="jzl-Sn-OfM"/>
+                            <constraint firstItem="Tpp-1t-7Vc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mQj-W5-afh"/>
                             <constraint firstItem="3PR-Yf-yDR" firstAttribute="width" secondItem="tZq-uM-6yk" secondAttribute="width" id="nx6-S2-Pfy"/>
                             <constraint firstItem="tZq-uM-6yk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pXw-4Y-8Hu">
                                 <variation key="heightClass=compact" constant="20"/>
