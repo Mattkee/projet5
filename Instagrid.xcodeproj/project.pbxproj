@@ -25,7 +25,7 @@
 		AF8999B71FCF869600CCB741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF8999BA1FCF869600CCB741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF8999BC1FCF869600CCB741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AFA38D152007734300363C79 /* ImageSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageSave.swift; path = Instagrid/Model/ImageSave.swift; sourceTree = SOURCE_ROOT; };
+		AFA38D152007734300363C79 /* ImageSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSave.swift; sourceTree = "<group>"; };
 		AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		AFFAA1031FD01E6300517109 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */

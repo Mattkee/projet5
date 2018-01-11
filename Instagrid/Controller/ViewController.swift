@@ -78,11 +78,11 @@ UINavigationControllerDelegate {
     
     var modifiedButton : UIButton!
     
-    @objc func buttonBackgroundwithPhotoLibrary (sender : UIButton) {
+    @objc func buttonBackgroundwithPhotoLibrary(sender : UIButton) {
         openPhotoLibraryButton(sender: modifiedButton)
     }
     
-    @objc func buttonBackgroundWithCamera (sender : UIButton) {
+    @objc func buttonBackgroundWithCamera(sender : UIButton) {
         openCameraButton(sender: modifiedButton)
     }
     
@@ -111,7 +111,7 @@ UINavigationControllerDelegate {
     }
     
     @IBAction func openCamera(_ sender: UIButton) {
-        buttonBackgroundWithCamera (sender: modifiedButton)
+        buttonBackgroundWithCamera(sender: modifiedButton)
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
         
@@ -161,7 +161,7 @@ UINavigationControllerDelegate {
         
     }
     
-    func defineStackView (viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
+    func defineStackView(viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
         
         let stackView = UIStackView(arrangedSubviews: viewArray)
         stackView.axis = axe
@@ -173,7 +173,7 @@ UINavigationControllerDelegate {
         
     }
     
-    func stackViewContraint (stackView : UIStackView) {
+    func stackViewContraint(stackView : UIStackView) {
         
         let ViewsDictionary = ["stackView": stackView]
         let stackView_H = NSLayoutConstraint.constraints(
