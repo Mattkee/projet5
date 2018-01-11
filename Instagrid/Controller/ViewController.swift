@@ -19,6 +19,8 @@ UINavigationControllerDelegate {
         //1
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
+        button2.isSelected = true
+        button2.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
         
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
         actionShareView.addGestureRecognizer(swipe)
@@ -105,7 +107,7 @@ UINavigationControllerDelegate {
         stackView.axis = axe
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 5
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
         
@@ -131,15 +133,18 @@ UINavigationControllerDelegate {
     func disposition1(){
         view4.isHidden = true
         
-        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setBackgroundImage(#imageLiteral(resourceName: "recbleu"), for: .normal)
+        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
         
@@ -161,15 +166,18 @@ UINavigationControllerDelegate {
     func disposition2(){
         view4.isHidden = true
         
-        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setBackgroundImage(#imageLiteral(resourceName: "recbleu"), for: .normal)
+        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
         
@@ -192,19 +200,23 @@ UINavigationControllerDelegate {
     func disposition3(){
         view4.isHidden = false
         
-        view1.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
         
-        view4.setBackgroundImage(#imageLiteral(resourceName: "croixbleu"), for: .normal)
+        view4.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view4.backgroundColor = UIColor.white
         launchAction(sender: view4)
         shareView.addSubview(view4)
         
@@ -240,7 +252,7 @@ UINavigationControllerDelegate {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary;
+            imagePicker.sourceType = .photoLibrary
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -249,7 +261,7 @@ UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        modifiedButton.setBackgroundImage(image, for: .normal)
+        modifiedButton.setImage(image, for: .normal)
         
         dismiss(animated:true, completion: nil)
     }

@@ -30,7 +30,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZq-uM-6yk">
                                 <rect key="frame" x="30" y="191" width="354" height="354"/>
-                                <color key="backgroundColor" red="0.053118310868740082" green="0.4273664653301239" blue="0.61390143632888794" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.053118310869999998" green="0.4273664653" blue="0.61390143630000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tZq-uM-6yk" secondAttribute="height" multiplier="1:1" id="0cy-3L-LPT"/>
                                 </constraints>
