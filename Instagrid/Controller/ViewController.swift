@@ -13,10 +13,23 @@ class ViewController: UIViewController,
 UINavigationControllerDelegate {
 
     var modifiedImage : UIImage!
+    var imageSave = ImageSave()
+    
+    @IBOutlet weak var viewContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
+    @IBOutlet weak var slideView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //1
+        
+        blurView.layer.cornerRadius = 15
+        viewContraint.constant = -250
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
         button2.isSelected = true
@@ -64,9 +77,12 @@ UINavigationControllerDelegate {
     
     var modifiedButton : UIButton!
     
-    @objc func modifiedButtonBackground (sender : UIButton) {
-        modifiedButton = sender
+    @objc func buttonBackgroundwithPhotoLibrary (sender : UIButton) {
         openPhotoLibraryButton(sender: modifiedButton)
+    }
+    
+    @objc func buttonBackgroundWithCamera (sender : UIButton) {
+        openCameraButton(sender: modifiedButton)
     }
     
     @IBAction func button1selec(_ sender: Any) {
@@ -92,13 +108,29 @@ UINavigationControllerDelegate {
         button3.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
         disposition3()
     }
+    
+    @IBAction func openCamera(_ sender: UIButton) {
+        buttonBackgroundWithCamera (sender: modifiedButton)
+        viewContraint.constant = -250
+    }
+    
+    @IBAction func openPhotoLibrary(_ sender: UIButton) {
+        buttonBackgroundwithPhotoLibrary(sender: modifiedButton)
+        viewContraint.constant = -250
+    }
+    
     let view1 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let view2 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let view3 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let view4 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     func launchAction(sender : UIButton) {
-        sender.addTarget(self, action: #selector(modifiedButtonBackground(sender:)), for: .touchUpInside)
+        sender.addTarget(self, action: #selector(rightSlide(sender: )), for: .touchUpInside)
+    }
+    
+    @objc func rightSlide(sender : UIButton) {
+        modifiedButton = sender
+        viewContraint.constant = 0
     }
     
     func defineStackView (viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
@@ -133,17 +165,18 @@ UINavigationControllerDelegate {
     func disposition1(){
         view4.isHidden = true
         
-        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
         view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
         view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        
+        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
         view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
@@ -166,17 +199,17 @@ UINavigationControllerDelegate {
     func disposition2(){
         view4.isHidden = true
         
-        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
         view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
         view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
         view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
@@ -200,22 +233,22 @@ UINavigationControllerDelegate {
     func disposition3(){
         view4.isHidden = false
         
-        view1.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
         view1.backgroundColor = UIColor.white
         shareView.addSubview(view1)
         launchAction(sender: view1)
         
-        view2.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
         view2.backgroundColor = UIColor.white
         launchAction(sender: view2)
         shareView.addSubview(view2)
         
-        view3.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
         view3.backgroundColor = UIColor.white
         launchAction(sender: view3)
         shareView.addSubview(view3)
         
-        view4.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+        view4.setImage(imageSave.setButtonImage(viewNumber: 4), for: .normal)
         view4.backgroundColor = UIColor.white
         launchAction(sender: view4)
         shareView.addSubview(view4)
@@ -262,6 +295,8 @@ UINavigationControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         modifiedButton.setImage(image, for: .normal)
+        
+        imageSave.imageArray.append(image)
         
         dismiss(animated:true, completion: nil)
     }
@@ -332,10 +367,11 @@ UINavigationControllerDelegate {
     
     func share(){
         actionShareView.transform = .identity
-        print("c'est bon ici")
+        
         let image = UIImage.imageWithView(view: shareView)
         
             let contentToShare = [image]
+            imageSave.imageArray.removeAll()
         
             let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)

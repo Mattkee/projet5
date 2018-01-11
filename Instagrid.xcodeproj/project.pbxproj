@@ -12,6 +12,7 @@
 		AF8999B61FCF869600CCB741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B41FCF869600CCB741 /* Main.storyboard */; };
 		AF8999B81FCF869600CCB741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B71FCF869600CCB741 /* Assets.xcassets */; };
 		AF8999BB1FCF869600CCB741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B91FCF869600CCB741 /* LaunchScreen.storyboard */; };
+		AFA38D162007734300363C79 /* ImageSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA38D152007734300363C79 /* ImageSave.swift */; };
 		AFFAA1041FD01E6300517109 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */; };
 		AFFAA1051FD01E6300517109 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1031FD01E6300517109 /* Delm-Medium.otf */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 		AF8999B71FCF869600CCB741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF8999BA1FCF869600CCB741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF8999BC1FCF869600CCB741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFA38D152007734300363C79 /* ImageSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageSave.swift; path = Instagrid/View/ImageSave.swift; sourceTree = SOURCE_ROOT; };
 		AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		AFFAA1031FD01E6300517109 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 		AFFAA1061FD01E9B00517109 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AFA38D152007734300363C79 /* ImageSave.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFA38D162007734300363C79 /* ImageSave.swift in Sources */,
 				AF8999B31FCF869600CCB741 /* ViewController.swift in Sources */,
 				AF8999B11FCF869600CCB741 /* AppDelegate.swift in Sources */,
 			);
