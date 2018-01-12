@@ -34,7 +34,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bonne Année !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2Q-1M-gpz">
                                         <rect key="frame" x="146" y="322.66666666666663" width="200" height="23.333333333333314"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="jyt-qQ-e5X"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="jyt-qQ-e5X"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,6 +44,7 @@
                                 <color key="backgroundColor" red="0.053118310869999998" green="0.4273664653" blue="0.61390143630000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tZq-uM-6yk" secondAttribute="height" multiplier="1:1" id="0cy-3L-LPT"/>
+                                    <constraint firstItem="U2Q-1M-gpz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tZq-uM-6yk" secondAttribute="leading" constant="20" symbolic="YES" id="FgB-3l-twE"/>
                                     <constraint firstAttribute="trailing" secondItem="U2Q-1M-gpz" secondAttribute="trailing" constant="8" id="PLF-K1-0zu"/>
                                     <constraint firstAttribute="bottom" secondItem="U2Q-1M-gpz" secondAttribute="bottom" constant="8" id="QKq-RR-cqr"/>
                                 </constraints>
