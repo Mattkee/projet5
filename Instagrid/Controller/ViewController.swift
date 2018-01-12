@@ -15,12 +15,21 @@ UINavigationControllerDelegate {
     var modifiedImage : UIImage!
     var imageSave = ImageSave()
     
-    @IBOutlet weak var viewContraint: NSLayoutConstraint!
     
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     @IBOutlet weak var slideView: UIView!
     
+    @IBOutlet weak var blurViewLeft: UIVisualEffectView!
+    
+    @IBOutlet weak var slideViewLeft: UIView!
+    
+    @IBOutlet weak var customText: UILabel!
+    
+    @IBOutlet weak var optionText: UISwitch!
+    
+    let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
+    let rightEdgePanGesture = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +40,13 @@ UINavigationControllerDelegate {
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
         self.slideView.transform = translationTransform
         
+        blurViewLeft.layer.cornerRadius = 15
+        var translationTransformLeft: CGAffineTransform
+        translationTransformLeft = CGAffineTransform(translationX: -250, y: 0)
+        self.slideViewLeft.transform = translationTransformLeft
+        
+        customText.isHidden = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
         button2.isSelected = true
@@ -38,6 +54,17 @@ UINavigationControllerDelegate {
         
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
         actionShareView.addGestureRecognizer(swipe)
+        
+        // add target for gesture
+        self.leftEdgePanGesture.addTarget(self, action: #selector(handleLeftEdgeAppear(_:)))
+        self.rightEdgePanGesture.addTarget(self, action: #selector(handleRightEdgeDisappear(_:)))
+        
+        // set detection edge
+        self.leftEdgePanGesture.edges = UIRectEdge.left
+        
+        // add gesture into view
+        self.view.addGestureRecognizer(self.leftEdgePanGesture)
+        self.slideViewLeft.addGestureRecognizer(self.rightEdgePanGesture)
     }
     
     deinit {
@@ -140,6 +167,35 @@ UINavigationControllerDelegate {
         
     }
     
+    @IBAction func optionTextAction(_ sender: Any) {
+        if optionText.isOn == false {
+            customText.isHidden = true
+        } else {
+        customText.isHidden = false
+        }
+    }
+    
+    // perform operation when left edge gesture detected
+    @objc func handleLeftEdgeAppear( _ gesture: UIScreenEdgePanGestureRecognizer ) {
+        var translationTransformLeft: CGAffineTransform
+        translationTransformLeft = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 0.5) {
+            self.slideViewLeft.transform = translationTransformLeft
+        }
+    }
+    
+    // perform operation when right edge gesture detected
+    @objc func handleRightEdgeDisappear( _ gesture: UIPanGestureRecognizer ) {
+        let translation = gesture.translation(in: slideViewLeft)
+        
+        if translation.x < 0 {
+            var translationTransformLeft: CGAffineTransform
+            translationTransformLeft = CGAffineTransform(translationX: -250, y: 0)
+            UIView.animate(withDuration: 0.5) {
+            self.slideViewLeft.transform = translationTransformLeft
+            }
+        }
+    }
     
     let view1 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let view2 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -160,6 +216,7 @@ UINavigationControllerDelegate {
         })
         
     }
+    
     
     func defineStackView(viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
         

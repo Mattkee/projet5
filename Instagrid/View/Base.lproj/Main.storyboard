@@ -250,8 +250,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="736"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X9K-xQ-pP4">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9K-xQ-pP4">
                                                     <rect key="frame" x="176" y="24.666666666666671" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="optionTextAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="wd7-bb-2dK"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add options texts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsW-aJ-Hf9">
                                                     <rect key="frame" x="8" y="30" width="168" height="20.333333333333329"/>
@@ -293,6 +296,7 @@
                                                     </segments>
                                                 </segmentedControl>
                                             </subviews>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="ND2-a1-LPP" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="0UX-fk-aRg"/>
                                                 <constraint firstAttribute="trailing" secondItem="X9K-xQ-pP4" secondAttribute="trailing" constant="25" id="5ND-AD-aSd"/>
@@ -329,6 +333,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.74935835599899292" green="0.86280602216720581" blue="0.9110904335975647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tZq-uM-6yk" firstAttribute="top" secondItem="3PR-Yf-yDR" secondAttribute="bottom" constant="8" id="4Kt-gf-pQr">
                                 <variation key="heightClass=compact" constant="10"/>
@@ -434,13 +439,16 @@
                     <connections>
                         <outlet property="actionShareView" destination="209-lc-BIX" id="zb8-QM-91w"/>
                         <outlet property="blurView" destination="MoX-fM-LbZ" id="pVo-zN-buz"/>
+                        <outlet property="blurViewLeft" destination="ieh-7z-LeA" id="NzT-X9-24r"/>
                         <outlet property="button1" destination="HA9-Js-GOQ" id="PpV-eF-TFL"/>
                         <outlet property="button2" destination="csX-Nj-71X" id="qj9-M7-agR"/>
                         <outlet property="button3" destination="2AE-Ry-tHw" id="zju-vG-WC3"/>
+                        <outlet property="customText" destination="U2Q-1M-gpz" id="Z9C-j8-um5"/>
+                        <outlet property="optionText" destination="X9K-xQ-pP4" id="hZ5-c1-HnW"/>
                         <outlet property="shareView" destination="tZq-uM-6yk" id="OMA-qd-cqk"/>
                         <outlet property="slideView" destination="Tpp-1t-7Vc" id="ug0-lf-p5j"/>
+                        <outlet property="slideViewLeft" destination="tWP-iW-Wur" id="tye-L0-7aX"/>
                         <outlet property="textLabel" destination="Azy-P3-PfV" id="Uc4-8s-Kcu"/>
-                        <outlet property="viewContraint" destination="jzl-Sn-OfM" id="xFc-Bi-56Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
