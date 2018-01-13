@@ -32,8 +32,6 @@ UINavigationControllerDelegate {
     @IBOutlet weak var textContentSpace: UITextField!
     @IBOutlet weak var changeText: UIButton!
     
-    var leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
-    var leftEdgePanGesturelandscape = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +70,7 @@ UINavigationControllerDelegate {
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
         actionShareView.addGestureRecognizer(swipe)
         
-        leftEdgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleLeftEdgeAppear(_:)))
+        let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleLeftEdgeAppear(_:)))
         
         let rightEdgePanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleRightEdgeDisappear(_:)))
         
@@ -101,13 +99,8 @@ UINavigationControllerDelegate {
         case .landscapeLeft, .landscapeRight:
             print("Landscape left")
             textLabel.text = "Swipe Left to share"
-            leftEdgePanGesturelandscape = UIPanGestureRecognizer(target: self, action: #selector(handleLeftAppearPan(_:)))
-            actionShareView.addGestureRecognizer(leftEdgePanGesturelandscape)
         case .portrait:
             textLabel.text = "Swipe up to share"
-            leftEdgePanGesture.edges = UIRectEdge.left
-            view.addGestureRecognizer(leftEdgePanGesture)
-            actionShareView.removeGestureRecognizer(leftEdgePanGesturelandscape)
         case .portraitUpsideDown:
             print("Portrait upside down")
         }
@@ -503,6 +496,9 @@ UINavigationControllerDelegate {
                     
                     if translation.x < 0 {
                         transformShareContentViewWith(gesture: gesture)
+                    }
+                    if translation.x > 0 {
+                        handleLeftAppearPan(gesture)
                     }
             default :
                     transformShareContentViewWith(gesture: gesture)
