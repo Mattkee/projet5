@@ -381,7 +381,19 @@ UINavigationControllerDelegate {
         
         modifiedButton.setImage(image, for: .normal)
         
-        imageSave.imageArray.append(image)
+        if modifiedButton == view1 {
+            imageSave.imageArray[1] = image
+            print("view1")
+        } else if modifiedButton == view2 {
+            imageSave.imageArray[2] = image
+            print("view2")
+        } else if modifiedButton == view3 {
+            imageSave.imageArray[3] = image
+            print("view3")
+        } else {
+            imageSave.imageArray[4] = image
+            print("view4")
+        }
         
         dismiss(animated:true, completion: nil)
     }
@@ -456,7 +468,7 @@ UINavigationControllerDelegate {
         let image = UIImage.imageWithView(view: shareView)
         
             let contentToShare = [image]
-            imageSave.imageArray.removeAll()
+            imageSave.imageArray = [Int : UIImage]()
         
             let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
