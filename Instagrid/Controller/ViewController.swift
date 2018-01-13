@@ -184,6 +184,7 @@ UINavigationControllerDelegate {
         
     }
     
+    // this action method active or desactive option text space.
     @IBAction func optionTextAction(_ sender: Any) {
         if optionText.isOn == true {
             customText.isHidden = false
@@ -211,6 +212,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this action method allow custom text disposition.
     @IBAction func topDownSelectorAction(_ sender: UISegmentedControl) {
         if topDownSelector.selectedSegmentIndex == 0 {
             customText2.isHidden = false
@@ -223,6 +225,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this action method allow custom text disposition.
     @IBAction func leftRightSelectorAction(_ sender: UISegmentedControl) {
         if leftRightSelector.selectedSegmentIndex == 0 {
             customText.textAlignment = .left
@@ -233,6 +236,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this action method allow custom text color.
     @IBAction func blackWhiteSelectorAction(_ sender: UISegmentedControl) {
         if blackWhiteSelector.selectedSegmentIndex == 0 {
             customText.textColor = UIColor.black
@@ -243,6 +247,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this action method allow custom text content.
     @IBAction func changeTextAction(_ sender: UIButton) {
         
         customText.text = textContentSpace.text
@@ -251,7 +256,7 @@ UINavigationControllerDelegate {
         
     }
     
-    // perform operation when left edge gesture detected
+    // perform operation when left edge gesture detected on portrait mode
     @objc func handleLeftEdgeAppear( _ gesture: UIScreenEdgePanGestureRecognizer ) {
         var translationTransformLeft: CGAffineTransform
         translationTransformLeft = CGAffineTransform(translationX: 0, y: 0)
@@ -260,6 +265,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // perform operation when left edge gesture detected on landscape mode
     @objc func handleLeftAppearPan( _ gesture: UIPanGestureRecognizer ) {
         let translation = gesture.translation(in: actionShareView)
         
@@ -272,7 +278,7 @@ UINavigationControllerDelegate {
         }
     }
     
-    // perform operation when right edge gesture detected
+    // perform operation when right edge gesture detected on slideviewleft.
     @objc func handleRightEdgeDisappear( _ gesture: UIPanGestureRecognizer ) {
         let translation = gesture.translation(in: slideViewLeft)
         
@@ -285,16 +291,19 @@ UINavigationControllerDelegate {
         }
     }
     
+    // these proprety create the four subview.
     let subviewOne = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let subviewTwo = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let subviewThree = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     let subviewFour = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
+    // for each subview button allow to appears right slide for choosen image.
     func launchAction(sender : UIButton) {
-        sender.addTarget(self, action: #selector(rightSlide(sender: )), for: .touchUpInside)
+        sender.addTarget(self, action: #selector(downSlide(sender: )), for: .touchUpInside)
     }
     
-    @objc func rightSlide(sender : UIButton) {
+    // this method will allow to display slide to choose camera or photo library.
+    @objc func downSlide(sender : UIButton) {
         modifiedButton = sender
         var translationTransform: CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 0)
