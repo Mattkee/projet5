@@ -12,10 +12,10 @@ class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
 
-    var modifiedImage : UIImage!
+    // this is an instance for class ImageSave
     var imageSave = ImageSave()
     
-    
+    // this outlet allow to connect storyboard object to viewController.
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var slideView: UIView!
     @IBOutlet weak var blurViewLeft: UIVisualEffectView!
@@ -32,21 +32,23 @@ UINavigationControllerDelegate {
     @IBOutlet weak var textContentSpace: UITextField!
     @IBOutlet weak var changeText: UIButton!
     
-    
+    // in this override func contains Any property or actions that must be launched or available as soon as the app is launched.
     override func viewDidLoad() {
         super.viewDidLoad()
-        //1
         
+        // these property concern slide allows to choose camera or library, must not appear when app is launched
         blurView.layer.cornerRadius = 15
         var translationTransform: CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
         self.slideView.transform = translationTransform
         
+        // these property concern slide allows to choose option text, must not appear when app is launched
         blurViewLeft.layer.cornerRadius = 15
         var translationTransformLeft: CGAffineTransform
         translationTransformLeft = CGAffineTransform(translationX: -250, y: 0)
         self.slideViewLeft.transform = translationTransformLeft
         
+        // These lines will allow you to hide or set up the initial configuration of the different options for the text.
         topDownSelector.selectedSegmentIndex = 1
         leftRightSelector.selectedSegmentIndex = 1
         blackWhiteSelector.selectedSegmentIndex = 1
@@ -61,32 +63,37 @@ UINavigationControllerDelegate {
         textContentSpace.isHidden = true
         changeText.isHidden = true
         
+        // for observe device orientation.
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
-        disposition2()
-        button2.isSelected = true
-        button2.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
+        // when app is launch this is the default viewDispositon.
+        viewDispositionTwo()
+        viewDispositionButtonTwo.isSelected = true
+        viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
         
+        // gesture for share prepared image.
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
         actionShareView.addGestureRecognizer(swipe)
         
+        // gesture allow to appear option text slide.
         let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleLeftEdgeAppear(_:)))
-        
+        // gesture allow to desappear option text slide.
         let rightEdgePanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleRightEdgeDisappear(_:)))
         
-        // set detection edge
+        // set detection edge for option text appear gesture.
         leftEdgePanGesture.edges = UIRectEdge.left
         
-        // add gesture into view
+        // add gesture into view for option text slide appear or desappear.
         view.addGestureRecognizer(leftEdgePanGesture)
         slideViewLeft.addGestureRecognizer(rightEdgePanGesture)
     }
     
     deinit {
-        //3
+        // for uidevice orientation.
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
+    // method allow to execute action according the orientation.
     @objc func deviceOrientationDidChange() {
         //2
         switch UIDevice.current.orientation {
@@ -106,52 +113,46 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this outlet allow to connect actionshareview and shareview to viewcontroller.
     @IBOutlet weak var shareView: UIView!
     @IBOutlet weak var textLabel: UILabel!
-    
     @IBOutlet weak var actionShareView: UIView!
-    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var viewDispositionButtonOne: UIButton!
+    @IBOutlet weak var viewDispositionButtonTwo: UIButton!
+    @IBOutlet weak var viewDispositionButtonThree: UIButton!
     
-    @IBOutlet weak var button2: UIButton!
-    
-    @IBOutlet weak var button3: UIButton!
-    
+    // this property is use when subview button is pressed.
     var modifiedButton : UIButton!
     
-    @objc func buttonBackgroundwithPhotoLibrary(sender : UIButton) {
-        openPhotoLibraryButton(sender: modifiedButton)
+    // These next three functions will allow you to select which view to display.
+    @IBAction func viewDispositionButtonOneSelected(_ sender: Any) {
+        viewDispositionButtonOne.isSelected = true
+        viewDispositionButtonTwo.isSelected = false
+        viewDispositionButtonThree.isSelected = false
+        viewDispositionButtonOne.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
+        viewDispositionOne()
     }
     
-    @objc func buttonBackgroundWithCamera(sender : UIButton) {
-        openCameraButton(sender: modifiedButton)
+    @IBAction func viewDispositionButtonTwoSelected(_ sender: Any) {
+        viewDispositionButtonOne.isSelected = false
+        viewDispositionButtonTwo.isSelected = true
+        viewDispositionButtonThree.isSelected = false
+        viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
+        viewDispositionTwo()
     }
     
-    @IBAction func button1selec(_ sender: Any) {
-        button1.isSelected = true
-        button2.isSelected = false
-        button3.isSelected = false
-        button1.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
-        disposition1()
+    @IBAction func viewDispositionButtonThreeSelected(_ sender: Any) {
+        viewDispositionButtonOne.isSelected = false
+        viewDispositionButtonTwo.isSelected = false
+        viewDispositionButtonThree.isSelected = true
+        viewDispositionButtonThree.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
+        viewDispositionThree()
     }
     
-    @IBAction func button2selec(_ sender: Any) {
-        button1.isSelected = false
-        button2.isSelected = true
-        button3.isSelected = false
-        button2.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
-        disposition2()
-    }
-    
-    @IBAction func button3selec(_ sender: Any) {
-        button1.isSelected = false
-        button2.isSelected = false
-        button3.isSelected = true
-        button3.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
-        disposition3()
-    }
-    
+    // this action method allow to call openCameraButton function.
     @IBAction func openCamera(_ sender: UIButton) {
-        buttonBackgroundWithCamera(sender: modifiedButton)
+        
+        openCameraButton(sender: modifiedButton)
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
         
@@ -160,8 +161,10 @@ UINavigationControllerDelegate {
         })
     }
     
+    // this action method allow to call openphotolibrarybutton function.
     @IBAction func openPhotoLibrary(_ sender: UIButton) {
-        buttonBackgroundwithPhotoLibrary(sender: modifiedButton)
+        
+        openPhotoLibraryButton(sender: modifiedButton)
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
         
@@ -170,6 +173,7 @@ UINavigationControllerDelegate {
         })
     }
     
+    // this action method allow to disappear slide for camera or library choosen.
     @IBAction func cancelSlide(_ sender: Any) {
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
@@ -243,6 +247,7 @@ UINavigationControllerDelegate {
         
         customText.text = textContentSpace.text
         customText2.text = textContentSpace.text
+        textContentSpace.endEditing(true)
         
     }
     
@@ -280,10 +285,10 @@ UINavigationControllerDelegate {
         }
     }
     
-    let view1 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let view2 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let view3 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let view4 = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let subviewOne = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let subviewTwo = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let subviewThree = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let subviewFour = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     func launchAction(sender : UIButton) {
         sender.addTarget(self, action: #selector(rightSlide(sender: )), for: .touchUpInside)
@@ -330,31 +335,31 @@ UINavigationControllerDelegate {
         shareView.addConstraints(stackView_V)
     }
     
-    func disposition1(){
-        view4.isHidden = true
+    func viewDispositionOne(){
+        subviewFour.isHidden = true
         
-        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        view1.backgroundColor = UIColor.white
-        shareView.addSubview(view1)
-        launchAction(sender: view1)
+        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
+        subviewOne.backgroundColor = UIColor.white
+        shareView.addSubview(subviewOne)
+        launchAction(sender: subviewOne)
         
-        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        view2.backgroundColor = UIColor.white
-        launchAction(sender: view2)
-        shareView.addSubview(view2)
+        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
+        subviewTwo.backgroundColor = UIColor.white
+        launchAction(sender: subviewTwo)
+        shareView.addSubview(subviewTwo)
         
         
-        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        view3.backgroundColor = UIColor.white
-        launchAction(sender: view3)
-        shareView.addSubview(view3)
+        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
+        subviewThree.backgroundColor = UIColor.white
+        launchAction(sender: subviewThree)
+        shareView.addSubview(subviewThree)
         
-        let tabView = [view1,view2]
+        let tabView = [subviewOne,subviewTwo]
         
         let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
         
         
-        let princView = [view3, tabViewStackView]
+        let princView = [subviewThree, tabViewStackView]
         
         let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
         
@@ -364,31 +369,31 @@ UINavigationControllerDelegate {
         
     }
     
-    func disposition2(){
-        view4.isHidden = true
+    func viewDispositionTwo(){
+        subviewFour.isHidden = true
         
-        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        view1.backgroundColor = UIColor.white
-        shareView.addSubview(view1)
-        launchAction(sender: view1)
+        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
+        subviewOne.backgroundColor = UIColor.white
+        shareView.addSubview(subviewOne)
+        launchAction(sender: subviewOne)
         
-        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        view2.backgroundColor = UIColor.white
-        launchAction(sender: view2)
-        shareView.addSubview(view2)
+        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
+        subviewTwo.backgroundColor = UIColor.white
+        launchAction(sender: subviewTwo)
+        shareView.addSubview(subviewTwo)
         
-        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        view3.backgroundColor = UIColor.white
-        launchAction(sender: view3)
-        shareView.addSubview(view3)
+        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
+        subviewThree.backgroundColor = UIColor.white
+        launchAction(sender: subviewThree)
+        shareView.addSubview(subviewThree)
         
         
-        let tabView = [view1,view2]
+        let tabView = [subviewOne,subviewTwo]
         
         let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
         
         
-        let princView = [tabViewStackView,view3]
+        let princView = [tabViewStackView,subviewThree]
         
         let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
         
@@ -398,39 +403,39 @@ UINavigationControllerDelegate {
         
     }
     
-    func disposition3(){
-        view4.isHidden = false
+    func viewDispositionThree(){
+        subviewFour.isHidden = false
         
-        view1.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        view1.backgroundColor = UIColor.white
-        shareView.addSubview(view1)
-        launchAction(sender: view1)
+        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
+        subviewOne.backgroundColor = UIColor.white
+        shareView.addSubview(subviewOne)
+        launchAction(sender: subviewOne)
         
-        view2.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        view2.backgroundColor = UIColor.white
-        launchAction(sender: view2)
-        shareView.addSubview(view2)
+        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
+        subviewTwo.backgroundColor = UIColor.white
+        launchAction(sender: subviewTwo)
+        shareView.addSubview(subviewTwo)
         
-        view3.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        view3.backgroundColor = UIColor.white
-        launchAction(sender: view3)
-        shareView.addSubview(view3)
+        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
+        subviewThree.backgroundColor = UIColor.white
+        launchAction(sender: subviewThree)
+        shareView.addSubview(subviewThree)
         
-        view4.setImage(imageSave.setButtonImage(viewNumber: 4), for: .normal)
-        view4.backgroundColor = UIColor.white
-        launchAction(sender: view4)
-        shareView.addSubview(view4)
+        subviewFour.setImage(imageSave.setButtonImage(viewNumber: 4), for: .normal)
+        subviewFour.backgroundColor = UIColor.white
+        launchAction(sender: subviewFour)
+        shareView.addSubview(subviewFour)
         
         
-        let tabView = [view1,view2]
-        let tabView2 = [view3,view4]
+        let tabView = [subviewOne,subviewTwo]
+        let tabsubviewTwo = [subviewThree,subviewFour]
         
         let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
         
-        let tabView2StackView = defineStackView(viewArray:tabView2, axe : .horizontal)
+        let tabsubviewTwoStackView = defineStackView(viewArray:tabsubviewTwo, axe : .horizontal)
         
         
-        let princView = [tabViewStackView,tabView2StackView]
+        let princView = [tabViewStackView,tabsubviewTwoStackView]
         
         let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
         
@@ -464,18 +469,18 @@ UINavigationControllerDelegate {
         
         modifiedButton.setImage(image, for: .normal)
         
-        if modifiedButton == view1 {
+        if modifiedButton == subviewOne {
             imageSave.imageArray[1] = image
-            print("view1")
-        } else if modifiedButton == view2 {
+            print("subviewOne")
+        } else if modifiedButton == subviewTwo {
             imageSave.imageArray[2] = image
-            print("view2")
-        } else if modifiedButton == view3 {
+            print("subviewTwo")
+        } else if modifiedButton == subviewThree {
             imageSave.imageArray[3] = image
-            print("view3")
+            print("subviewThree")
         } else {
             imageSave.imageArray[4] = image
-            print("view4")
+            print("subviewFour")
         }
         
         dismiss(animated:true, completion: nil)
@@ -553,10 +558,23 @@ UINavigationControllerDelegate {
         
         let image = UIImage.imageWithView(view: shareView)
         
-            let contentToShare = [image]
-            imageSave.imageArray = [Int : UIImage]()
+        let contentToShare = [image]
+        imageSave.imageArray = [Int : UIImage]()
         
-            let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
+        optionText.setOn(false, animated: false)
+        
+        customText.isHidden = true
+        customText2.isHidden = true
+        textPositionLabel.isHidden = true
+        topDownSelector.isHidden = true
+        leftRightSelector.isHidden = true
+        textColorLabel.isHidden = true
+        blackWhiteSelector.isHidden = true
+        textContentLabel.isHidden = true
+        textContentSpace.isHidden = true
+        changeText.isHidden = true
+        
+        let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
         
     }

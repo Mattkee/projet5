@@ -32,13 +32,13 @@
                                 <rect key="frame" x="30" y="191" width="354" height="354"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bonne Année !" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2Q-1M-gpz">
-                                        <rect key="frame" x="15" y="320.66666666666669" width="324" height="23.333333333333314"/>
+                                        <rect key="frame" x="15" y="323" width="324" height="21"/>
                                         <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bonne Année !" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-IR-hpD">
-                                        <rect key="frame" x="15" y="9.9999999999999982" width="324" height="23.333333333333329"/>
+                                        <rect key="frame" x="15" y="10" width="324" height="21"/>
                                         <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PR-Yf-yDR">
-                                <rect key="frame" x="132" y="25" width="150" height="39"/>
+                                <rect key="frame" x="139.66666666666669" y="25" width="134.66666666666669" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3PR-Yf-yDR" secondAttribute="height" multiplier="50:13" id="UBi-pZ-6eT"/>
                                     <constraint firstAttribute="height" constant="50" id="q7c-tA-hY3">
@@ -79,14 +79,14 @@
                                 </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="209-lc-BIX">
-                                <rect key="frame" x="30" y="69" width="354" height="117"/>
+                                <rect key="frame" x="30" y="65" width="354" height="121"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="FlecheTop" translatesAutoresizingMaskIntoConstraints="NO" id="t9U-Wp-4KT">
-                                        <rect key="frame" x="170" y="73" width="15" height="10"/>
+                                        <rect key="frame" x="170" y="75.666666666666657" width="15" height="10"/>
                                         <variation key="heightClass=compact" image="Flecheleft"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azy-P3-PfV">
-                                        <rect key="frame" x="0.0" y="88" width="355.66666666666669" height="29"/>
+                                        <rect key="frame" x="0.0" y="90.666666666666657" width="355.66666666666669" height="30.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -148,25 +148,25 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hex-CX-QjI">
                                 <rect key="frame" x="30" y="553" width="354" height="175"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA9-Js-GOQ" userLabel="Button1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA9-Js-GOQ" userLabel="viewDispositionButtonOne">
                                         <rect key="frame" x="0.0" y="47.666666666666629" width="112.66666666666667" height="80"/>
                                         <state key="normal" image="Carre1"/>
                                         <connections>
-                                            <action selector="button1selec:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b9O-d2-Dze"/>
+                                            <action selector="viewDispositionButtonOneSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b9O-d2-Dze"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Nj-71X" userLabel="Button2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csX-Nj-71X" userLabel="viewDispositionButtonTwo">
                                         <rect key="frame" x="120.66666666666666" y="47.666666666666629" width="112.66666666666666" height="80"/>
                                         <state key="normal" image="Carre2"/>
                                         <connections>
-                                            <action selector="button2selec:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uC6-YF-3Tl"/>
+                                            <action selector="viewDispositionButtonTwoSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uC6-YF-3Tl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2AE-Ry-tHw" userLabel="Button3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2AE-Ry-tHw" userLabel="viewDispositionButtonThree">
                                         <rect key="frame" x="241.33333333333329" y="47.666666666666629" width="112.66666666666666" height="80"/>
                                         <state key="normal" image="Carre3"/>
                                         <connections>
-                                            <action selector="button3selec:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7YJ-n3-8pc"/>
+                                            <action selector="viewDispositionButtonThreeSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7YJ-n3-8pc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -500,9 +500,6 @@
                         <outlet property="blackWhiteSelector" destination="92S-l5-m6F" id="8Aq-lv-Y3e"/>
                         <outlet property="blurView" destination="MoX-fM-LbZ" id="pVo-zN-buz"/>
                         <outlet property="blurViewLeft" destination="ieh-7z-LeA" id="NzT-X9-24r"/>
-                        <outlet property="button1" destination="HA9-Js-GOQ" id="PpV-eF-TFL"/>
-                        <outlet property="button2" destination="csX-Nj-71X" id="qj9-M7-agR"/>
-                        <outlet property="button3" destination="2AE-Ry-tHw" id="zju-vG-WC3"/>
                         <outlet property="changeText" destination="Vtd-vw-n8c" id="YRa-CT-qpb"/>
                         <outlet property="customText" destination="U2Q-1M-gpz" id="Z9C-j8-um5"/>
                         <outlet property="customText2" destination="8ep-IR-hpD" id="3yF-GF-l2z"/>
@@ -517,6 +514,9 @@
                         <outlet property="textLabel" destination="Azy-P3-PfV" id="Uc4-8s-Kcu"/>
                         <outlet property="textPositionLabel" destination="0DU-y8-Sh9" id="8Zp-ax-o5H"/>
                         <outlet property="topDownSelector" destination="ND2-a1-LPP" id="SiF-Sp-Qyu"/>
+                        <outlet property="viewDispositionButtonOne" destination="HA9-Js-GOQ" id="PpV-eF-TFL"/>
+                        <outlet property="viewDispositionButtonThree" destination="2AE-Ry-tHw" id="zju-vG-WC3"/>
+                        <outlet property="viewDispositionButtonTwo" destination="csX-Nj-71X" id="qj9-M7-agR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
