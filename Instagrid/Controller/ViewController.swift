@@ -17,16 +17,17 @@ UINavigationControllerDelegate {
     
     
     @IBOutlet weak var blurView: UIVisualEffectView!
-    
     @IBOutlet weak var slideView: UIView!
-    
     @IBOutlet weak var blurViewLeft: UIVisualEffectView!
-    
     @IBOutlet weak var slideViewLeft: UIView!
-    
     @IBOutlet weak var customText: UILabel!
-    
     @IBOutlet weak var optionText: UISwitch!
+    @IBOutlet weak var textPositionLabel: UILabel!
+    @IBOutlet weak var topDownSelector: UISegmentedControl!
+    @IBOutlet weak var leftRightSelector: UISegmentedControl!
+    @IBOutlet weak var textColorLabel: UILabel!
+    @IBOutlet weak var blackWhiteSelector: UISegmentedControl!
+    
     
     let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
     let rightEdgePanGesture = UIPanGestureRecognizer()
@@ -46,6 +47,11 @@ UINavigationControllerDelegate {
         self.slideViewLeft.transform = translationTransformLeft
         
         customText.isHidden = true
+        textPositionLabel.isHidden = true
+        topDownSelector.isHidden = true
+        leftRightSelector.isHidden = true
+        textColorLabel.isHidden = true
+        blackWhiteSelector.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
@@ -168,10 +174,21 @@ UINavigationControllerDelegate {
     }
     
     @IBAction func optionTextAction(_ sender: Any) {
-        if optionText.isOn == false {
-            customText.isHidden = true
+        if optionText.isOn == true {
+            customText.isHidden = false
+            textPositionLabel.isHidden = false
+            topDownSelector.isHidden = false
+            leftRightSelector.isHidden = false
+            textColorLabel.isHidden = false
+            blackWhiteSelector.isHidden = false
+            
         } else {
-        customText.isHidden = false
+            customText.isHidden = true
+            textPositionLabel.isHidden = true
+            topDownSelector.isHidden = true
+            leftRightSelector.isHidden = true
+            textColorLabel.isHidden = true
+            blackWhiteSelector.isHidden = true
         }
     }
     

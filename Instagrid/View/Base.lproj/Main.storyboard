@@ -438,17 +438,22 @@
                     </view>
                     <connections>
                         <outlet property="actionShareView" destination="209-lc-BIX" id="zb8-QM-91w"/>
+                        <outlet property="blackWhiteSelector" destination="92S-l5-m6F" id="8Aq-lv-Y3e"/>
                         <outlet property="blurView" destination="MoX-fM-LbZ" id="pVo-zN-buz"/>
                         <outlet property="blurViewLeft" destination="ieh-7z-LeA" id="NzT-X9-24r"/>
                         <outlet property="button1" destination="HA9-Js-GOQ" id="PpV-eF-TFL"/>
                         <outlet property="button2" destination="csX-Nj-71X" id="qj9-M7-agR"/>
                         <outlet property="button3" destination="2AE-Ry-tHw" id="zju-vG-WC3"/>
                         <outlet property="customText" destination="U2Q-1M-gpz" id="Z9C-j8-um5"/>
+                        <outlet property="leftRightSelector" destination="2oa-Gt-Yol" id="TCe-6q-UAe"/>
                         <outlet property="optionText" destination="X9K-xQ-pP4" id="hZ5-c1-HnW"/>
                         <outlet property="shareView" destination="tZq-uM-6yk" id="OMA-qd-cqk"/>
                         <outlet property="slideView" destination="Tpp-1t-7Vc" id="ug0-lf-p5j"/>
                         <outlet property="slideViewLeft" destination="tWP-iW-Wur" id="tye-L0-7aX"/>
+                        <outlet property="textColorLabel" destination="j01-yx-zkd" id="f5A-J1-s2Q"/>
                         <outlet property="textLabel" destination="Azy-P3-PfV" id="Uc4-8s-Kcu"/>
+                        <outlet property="textPositionLabel" destination="0DU-y8-Sh9" id="8Zp-ax-o5H"/>
+                        <outlet property="topDownSelector" destination="ND2-a1-LPP" id="SiF-Sp-Qyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
