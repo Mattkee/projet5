@@ -21,12 +21,20 @@ UINavigationControllerDelegate {
     @IBOutlet weak var blurViewLeft: UIVisualEffectView!
     @IBOutlet weak var slideViewLeft: UIView!
     @IBOutlet weak var customText: UILabel!
+    @IBOutlet weak var customText2: UILabel!
     @IBOutlet weak var optionText: UISwitch!
     @IBOutlet weak var textPositionLabel: UILabel!
     @IBOutlet weak var topDownSelector: UISegmentedControl!
     @IBOutlet weak var leftRightSelector: UISegmentedControl!
     @IBOutlet weak var textColorLabel: UILabel!
     @IBOutlet weak var blackWhiteSelector: UISegmentedControl!
+    
+    @IBOutlet weak var textContentLabel: UILabel!
+    
+    @IBOutlet weak var textContentSpace: UITextField!
+    
+    @IBOutlet weak var changeText: UIButton!
+    
     
     
     let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
@@ -46,12 +54,19 @@ UINavigationControllerDelegate {
         translationTransformLeft = CGAffineTransform(translationX: -250, y: 0)
         self.slideViewLeft.transform = translationTransformLeft
         
+        topDownSelector.selectedSegmentIndex = 1
+        leftRightSelector.selectedSegmentIndex = 1
+        blackWhiteSelector.selectedSegmentIndex = 1
         customText.isHidden = true
+        customText2.isHidden = true
         textPositionLabel.isHidden = true
         topDownSelector.isHidden = true
         leftRightSelector.isHidden = true
         textColorLabel.isHidden = true
         blackWhiteSelector.isHidden = true
+        textContentLabel.isHidden = true
+        textContentSpace.isHidden = true
+        changeText.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         disposition2()
@@ -176,20 +191,67 @@ UINavigationControllerDelegate {
     @IBAction func optionTextAction(_ sender: Any) {
         if optionText.isOn == true {
             customText.isHidden = false
+            customText.layer.zPosition = 1
             textPositionLabel.isHidden = false
             topDownSelector.isHidden = false
             leftRightSelector.isHidden = false
             textColorLabel.isHidden = false
             blackWhiteSelector.isHidden = false
+            textContentLabel.isHidden = false
+            textContentSpace.isHidden = false
+            changeText.isHidden = false
             
         } else {
             customText.isHidden = true
+            customText2.isHidden = true
             textPositionLabel.isHidden = true
             topDownSelector.isHidden = true
             leftRightSelector.isHidden = true
             textColorLabel.isHidden = true
             blackWhiteSelector.isHidden = true
+            textContentLabel.isHidden = true
+            textContentSpace.isHidden = true
+            changeText.isHidden = true
         }
+    }
+    
+    @IBAction func topDownSelectorAction(_ sender: UISegmentedControl) {
+        if topDownSelector.selectedSegmentIndex == 0 {
+            customText2.isHidden = false
+            customText.isHidden = true
+            customText2.layer.zPosition = 1
+        } else if topDownSelector.selectedSegmentIndex == 1 {
+            customText2.isHidden = true
+            customText.isHidden = false
+            customText.layer.zPosition = 1
+        }
+    }
+    
+    @IBAction func leftRightSelectorAction(_ sender: UISegmentedControl) {
+        if leftRightSelector.selectedSegmentIndex == 0 {
+            customText.textAlignment = .left
+            customText2.textAlignment = .left
+        } else if leftRightSelector.selectedSegmentIndex == 1 {
+            customText.textAlignment = .right
+            customText2.textAlignment = .right
+        }
+    }
+    
+    @IBAction func blackWhiteSelectorAction(_ sender: UISegmentedControl) {
+        if blackWhiteSelector.selectedSegmentIndex == 0 {
+            customText.textColor = UIColor.black
+            customText2.textColor = UIColor.black
+        } else if blackWhiteSelector.selectedSegmentIndex == 1 {
+            customText.textColor = UIColor.white
+            customText2.textColor = UIColor.white
+        }
+    }
+    
+    @IBAction func changeTextAction(_ sender: UIButton) {
+        
+        customText.text = textContentSpace.text
+        customText2.text = textContentSpace.text
+        
     }
     
     // perform operation when left edge gesture detected
