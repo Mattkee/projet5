@@ -28,17 +28,12 @@ UINavigationControllerDelegate {
     @IBOutlet weak var leftRightSelector: UISegmentedControl!
     @IBOutlet weak var textColorLabel: UILabel!
     @IBOutlet weak var blackWhiteSelector: UISegmentedControl!
-    
     @IBOutlet weak var textContentLabel: UILabel!
-    
     @IBOutlet weak var textContentSpace: UITextField!
-    
     @IBOutlet weak var changeText: UIButton!
     
-    
-    
-    let leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
-    let rightEdgePanGesture = UIPanGestureRecognizer()
+    var leftEdgePanGesture = UIScreenEdgePanGestureRecognizer()
+    var leftEdgePanGesturelandscape = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +64,7 @@ UINavigationControllerDelegate {
         changeText.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
         disposition2()
         button2.isSelected = true
         button2.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
@@ -76,16 +72,16 @@ UINavigationControllerDelegate {
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
         actionShareView.addGestureRecognizer(swipe)
         
-        // add target for gesture
-        self.leftEdgePanGesture.addTarget(self, action: #selector(handleLeftEdgeAppear(_:)))
-        self.rightEdgePanGesture.addTarget(self, action: #selector(handleRightEdgeDisappear(_:)))
+        leftEdgePanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleLeftEdgeAppear(_:)))
+        
+        let rightEdgePanGesture = UIPanGestureRecognizer(target: self, action: #selector(handleRightEdgeDisappear(_:)))
         
         // set detection edge
-        self.leftEdgePanGesture.edges = UIRectEdge.left
+        leftEdgePanGesture.edges = UIRectEdge.left
         
         // add gesture into view
-        self.view.addGestureRecognizer(self.leftEdgePanGesture)
-        self.slideViewLeft.addGestureRecognizer(self.rightEdgePanGesture)
+        view.addGestureRecognizer(leftEdgePanGesture)
+        slideViewLeft.addGestureRecognizer(rightEdgePanGesture)
     }
     
     deinit {
@@ -102,13 +98,16 @@ UINavigationControllerDelegate {
             print("Face up")
         case .unknown:
             print("Unknown")
-        case .landscapeLeft:
+        case .landscapeLeft, .landscapeRight:
             print("Landscape left")
             textLabel.text = "Swipe Left to share"
-        case .landscapeRight:
-            textLabel.text = "Swipe Left to share"
+            leftEdgePanGesturelandscape = UIPanGestureRecognizer(target: self, action: #selector(handleLeftAppearPan(_:)))
+            actionShareView.addGestureRecognizer(leftEdgePanGesturelandscape)
         case .portrait:
             textLabel.text = "Swipe up to share"
+            leftEdgePanGesture.edges = UIRectEdge.left
+            view.addGestureRecognizer(leftEdgePanGesture)
+            actionShareView.removeGestureRecognizer(leftEdgePanGesturelandscape)
         case .portraitUpsideDown:
             print("Portrait upside down")
         }
@@ -260,6 +259,18 @@ UINavigationControllerDelegate {
         translationTransformLeft = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 0.5) {
             self.slideViewLeft.transform = translationTransformLeft
+        }
+    }
+    
+    @objc func handleLeftAppearPan( _ gesture: UIPanGestureRecognizer ) {
+        let translation = gesture.translation(in: actionShareView)
+        
+        if translation.x > 0 {
+            var translationTransformLeft: CGAffineTransform
+            translationTransformLeft = CGAffineTransform(translationX: 0, y: 0)
+            UIView.animate(withDuration: 0.5) {
+                self.slideViewLeft.transform = translationTransformLeft
+            }
         }
     }
     

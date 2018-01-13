@@ -257,7 +257,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9K-xQ-pP4">
-                                                    <rect key="frame" x="176" y="24.666666666666671" width="51" height="31"/>
+                                                    <rect key="frame" x="176" y="25" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="optionTextAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="wd7-bb-2dK"/>
                                                     </connections>
@@ -345,11 +345,15 @@
                                                 <constraint firstItem="0DU-y8-Sh9" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="CyI-bA-h1E"/>
                                                 <constraint firstItem="92S-l5-m6F" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="KSM-Z5-igX"/>
                                                 <constraint firstItem="vpX-hc-KEg" firstAttribute="top" secondItem="7qn-Cg-QtE" secondAttribute="bottom" constant="8" id="Lvs-og-bs2"/>
-                                                <constraint firstItem="j01-yx-zkd" firstAttribute="top" secondItem="2oa-Gt-Yol" secondAttribute="bottom" constant="30" id="M7V-yy-g6H"/>
+                                                <constraint firstItem="j01-yx-zkd" firstAttribute="top" secondItem="2oa-Gt-Yol" secondAttribute="bottom" constant="30" id="M7V-yy-g6H">
+                                                    <variation key="heightClass=compact" constant="10"/>
+                                                </constraint>
                                                 <constraint firstItem="ND2-a1-LPP" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="NNx-qJ-uaG"/>
                                                 <constraint firstItem="7qn-Cg-QtE" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="Ok2-mC-QYk"/>
                                                 <constraint firstItem="X9K-xQ-pP4" firstAttribute="centerY" secondItem="WsW-aJ-Hf9" secondAttribute="centerY" id="QL0-sI-1ap"/>
-                                                <constraint firstItem="0DU-y8-Sh9" firstAttribute="top" secondItem="WsW-aJ-Hf9" secondAttribute="bottom" constant="30" id="Um7-Yj-b4R"/>
+                                                <constraint firstItem="0DU-y8-Sh9" firstAttribute="top" secondItem="WsW-aJ-Hf9" secondAttribute="bottom" constant="30" id="Um7-Yj-b4R">
+                                                    <variation key="heightClass=compact" constant="10"/>
+                                                </constraint>
                                                 <constraint firstItem="Vtd-vw-n8c" firstAttribute="top" secondItem="vpX-hc-KEg" secondAttribute="bottom" constant="8" id="X8h-Wa-kWd"/>
                                                 <constraint firstItem="2oa-Gt-Yol" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="YVE-wS-ozQ"/>
                                                 <constraint firstItem="WsW-aJ-Hf9" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="d2o-i2-tJT"/>
@@ -359,7 +363,9 @@
                                                 <constraint firstItem="j01-yx-zkd" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="fhR-bd-HZx"/>
                                                 <constraint firstItem="2oa-Gt-Yol" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="g9f-gM-QDZ"/>
                                                 <constraint firstItem="j01-yx-zkd" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="h6A-8b-hBF"/>
-                                                <constraint firstItem="WsW-aJ-Hf9" firstAttribute="top" secondItem="erQ-Td-YPJ" secondAttribute="top" constant="30" id="hRS-tj-xc9"/>
+                                                <constraint firstItem="WsW-aJ-Hf9" firstAttribute="top" secondItem="erQ-Td-YPJ" secondAttribute="top" constant="30" id="hRS-tj-xc9">
+                                                    <variation key="heightClass=compact" constant="10"/>
+                                                </constraint>
                                                 <constraint firstItem="92S-l5-m6F" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="hxC-4M-jqy"/>
                                                 <constraint firstItem="0DU-y8-Sh9" firstAttribute="centerX" secondItem="erQ-Td-YPJ" secondAttribute="centerX" id="jjK-xM-IJD"/>
                                                 <constraint firstItem="92S-l5-m6F" firstAttribute="top" secondItem="j01-yx-zkd" secondAttribute="bottom" constant="8" id="kTs-7S-giI"/>
@@ -368,7 +374,9 @@
                                                 <constraint firstItem="7qn-Cg-QtE" firstAttribute="leading" secondItem="erQ-Td-YPJ" secondAttribute="leading" constant="8" id="qkE-Bt-VVH"/>
                                                 <constraint firstItem="2oa-Gt-Yol" firstAttribute="top" secondItem="ND2-a1-LPP" secondAttribute="bottom" constant="15" id="wRR-xQ-ulk"/>
                                                 <constraint firstItem="ND2-a1-LPP" firstAttribute="top" secondItem="0DU-y8-Sh9" secondAttribute="bottom" constant="8" id="wfl-Jl-whX"/>
-                                                <constraint firstItem="7qn-Cg-QtE" firstAttribute="top" secondItem="92S-l5-m6F" secondAttribute="bottom" constant="30" id="yBn-6k-6iZ"/>
+                                                <constraint firstItem="7qn-Cg-QtE" firstAttribute="top" secondItem="92S-l5-m6F" secondAttribute="bottom" constant="30" id="yBn-6k-6iZ">
+                                                    <variation key="heightClass=compact" constant="10"/>
+                                                </constraint>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
