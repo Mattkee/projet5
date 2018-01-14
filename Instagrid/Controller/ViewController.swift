@@ -314,7 +314,7 @@ UINavigationControllerDelegate {
         
     }
     
-    
+    // this method define every stack view configuration
     func defineStackView(viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
         
         let stackView = UIStackView(arrangedSubviews: viewArray)
@@ -327,6 +327,7 @@ UINavigationControllerDelegate {
         
     }
     
+    // this method define stack view contraint
     func stackViewContraint(stackView : UIStackView) {
         
         let ViewsDictionary = ["stackView": stackView]
@@ -344,6 +345,7 @@ UINavigationControllerDelegate {
         shareView.addConstraints(stackView_V)
     }
     
+    // this method allow to display view one disposition.
     func viewDispositionOne(){
         subviewFour.isHidden = true
         
@@ -378,6 +380,7 @@ UINavigationControllerDelegate {
         
     }
     
+    // this method allow to display view two disposition.
     func viewDispositionTwo(){
         subviewFour.isHidden = true
         
@@ -412,6 +415,7 @@ UINavigationControllerDelegate {
         
     }
     
+    // this method allow to display view three disposition.
     func viewDispositionThree(){
         subviewFour.isHidden = false
         
@@ -453,6 +457,8 @@ UINavigationControllerDelegate {
         stackViewContraint(stackView: stackViewSecond)
         
     }
+    
+    // this method allow to use camera.
     @objc func openCameraButton(sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
@@ -463,6 +469,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this method allow to access photo library.
     @objc func openPhotoLibraryButton(sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let imagePicker = UIImagePickerController()
@@ -473,6 +480,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this method allow to use image already choosen.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
@@ -495,6 +503,7 @@ UINavigationControllerDelegate {
         dismiss(animated:true, completion: nil)
     }
     
+    // this method allow to access animation for share gesture according device orientation.
     @objc func shareContent(gesture : UIPanGestureRecognizer) {
         switch gesture.state {
         case .began, .changed:
@@ -539,6 +548,7 @@ UINavigationControllerDelegate {
         }
     }
     
+    // this method allow to transform share gesture animation.
     func transformShareContentViewWith(gesture: UIPanGestureRecognizer){
         
         switch UIDevice.current.orientation {
@@ -562,6 +572,7 @@ UINavigationControllerDelegate {
         
     }
     
+    // this method allow to share content.
     func share(){
         actionShareView.transform = .identity
         
@@ -589,6 +600,7 @@ UINavigationControllerDelegate {
     }
 }
 
+// this extension allow us to transform UIview to UIimage.
 extension UIImage {
     class func imageWithView(view: UIView) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
@@ -598,6 +610,8 @@ extension UIImage {
         return img!
     }
 }
+
+// this extension allow to ajuste uiimagepickercontroller according to orientation device.
 extension UIImagePickerController
 {
     override open var shouldAutorotate: Bool {
