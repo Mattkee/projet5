@@ -66,10 +66,8 @@ UINavigationControllerDelegate {
         // for observe device orientation.
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
-        // when app is launch this is the default viewDispositon.
-        viewDispositionTwo()
-        viewDispositionButtonTwo.isSelected = true
-        viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
+        shareView.setViews(topHidden: false, bottomHidden: true)
+        viewDispositionButtonImage(buttonOne: false, buttonTwo: true, buttonThree: false)
         
         // gesture for share prepared image.
         let swipe = UIPanGestureRecognizer(target: self, action: #selector(shareContent(gesture :)))
@@ -114,7 +112,7 @@ UINavigationControllerDelegate {
     }
     
     // this outlet allow to connect actionshareview and shareview to viewcontroller.
-    @IBOutlet weak var shareView: UIView!
+    @IBOutlet weak var shareView: ShareView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var actionShareView: UIView!
     @IBOutlet weak var viewDispositionButtonOne: UIButton!
@@ -124,31 +122,41 @@ UINavigationControllerDelegate {
     // this property is use when subview button is pressed.
     var modifiedButton : UIButton!
     
-    // These next three functions will allow you to select which view to display.
-    @IBAction func viewDispositionButtonOneSelected(_ sender: Any) {
-        viewDispositionButtonOne.isSelected = true
-        viewDispositionButtonTwo.isSelected = false
-        viewDispositionButtonThree.isSelected = false
+    @IBAction func setLayout(_ sender: UIButton) {
+        
+        switch sender.tag {
+        case 1:
+            shareView.setViews(topHidden: true, bottomHidden: false)
+            viewDispositionButtonImage(buttonOne: true, buttonTwo: false, buttonThree: false)
+        case 2:
+            shareView.setViews(topHidden: false, bottomHidden: true)
+            viewDispositionButtonImage(buttonOne: false, buttonTwo: true, buttonThree: false)
+        case 3:
+            shareView.setViews(topHidden: false, bottomHidden: false)
+            viewDispositionButtonImage(buttonOne: false, buttonTwo: false, buttonThree: true)
+        default:
+            print("error")
+        }
+    }
+    @IBAction func setButtonImage(_ sender: UIButton) {
+        
+        switch sender.tag {
+            case 1, 2, 3, 4:
+                modifiedButton = sender
+                downSlide(sender: sender)
+            default:
+                print("error")
+        }
+    }
+    
+    func viewDispositionButtonImage(buttonOne : Bool, buttonTwo : Bool, buttonThree : Bool) {
         viewDispositionButtonOne.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
-        viewDispositionOne()
-    }
-    
-    @IBAction func viewDispositionButtonTwoSelected(_ sender: Any) {
-        viewDispositionButtonOne.isSelected = false
-        viewDispositionButtonTwo.isSelected = true
-        viewDispositionButtonThree.isSelected = false
         viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
-        viewDispositionTwo()
-    }
-    
-    @IBAction func viewDispositionButtonThreeSelected(_ sender: Any) {
-        viewDispositionButtonOne.isSelected = false
-        viewDispositionButtonTwo.isSelected = false
-        viewDispositionButtonThree.isSelected = true
         viewDispositionButtonThree.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
-        viewDispositionThree()
+        viewDispositionButtonOne.isSelected = buttonOne
+        viewDispositionButtonTwo.isSelected = buttonTwo
+        viewDispositionButtonThree.isSelected = buttonThree
     }
-    
     // this action method allow to call openCameraButton function.
     @IBAction func openCamera(_ sender: UIButton) {
         
@@ -291,17 +299,6 @@ UINavigationControllerDelegate {
         }
     }
     
-    // these proprety create the four subview.
-    let subviewOne = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let subviewTwo = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let subviewThree = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    let subviewFour = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    
-    // for each subview button allow to appears right slide for choosen image.
-    func launchAction(sender : UIButton) {
-        sender.addTarget(self, action: #selector(downSlide(sender: )), for: .touchUpInside)
-    }
-    
     // this method will allow to display slide to choose camera or photo library.
     @objc func downSlide(sender : UIButton) {
         modifiedButton = sender
@@ -311,150 +308,6 @@ UINavigationControllerDelegate {
         UIView.animate(withDuration: 0.5, animations: {
             self.slideView.transform = translationTransform
         })
-        
-    }
-    
-    // this method define every stack view configuration
-    func defineStackView(viewArray : [UIView], axe : UILayoutConstraintAxis) -> UIStackView {
-        
-        let stackView = UIStackView(arrangedSubviews: viewArray)
-        stackView.axis = axe
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-        
-    }
-    
-    // this method define stack view contraint
-    func stackViewContraint(stackView : UIStackView) {
-        
-        let ViewsDictionary = ["stackView": stackView]
-        let stackView_H = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[stackView]-10-|",  //horizontal constraint 10 points from left and right side
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: ViewsDictionary)
-        let stackView_V = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[stackView]-10-|", //vertical constraint 10 points from top and bottom
-            options: NSLayoutFormatOptions(rawValue:0),
-            metrics: nil,
-            views: ViewsDictionary)
-        shareView.addConstraints(stackView_H)
-        shareView.addConstraints(stackView_V)
-    }
-    
-    // this method allow to display view one disposition.
-    func viewDispositionOne(){
-        subviewFour.isHidden = true
-        
-        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        subviewOne.backgroundColor = UIColor.white
-        shareView.addSubview(subviewOne)
-        launchAction(sender: subviewOne)
-        
-        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        subviewTwo.backgroundColor = UIColor.white
-        launchAction(sender: subviewTwo)
-        shareView.addSubview(subviewTwo)
-        
-        
-        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        subviewThree.backgroundColor = UIColor.white
-        launchAction(sender: subviewThree)
-        shareView.addSubview(subviewThree)
-        
-        let tabView = [subviewOne,subviewTwo]
-        
-        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
-        
-        
-        let princView = [subviewThree, tabViewStackView]
-        
-        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
-        
-        shareView.addSubview(stackViewSecond)
-        
-        stackViewContraint(stackView: stackViewSecond)
-        
-    }
-    
-    // this method allow to display view two disposition.
-    func viewDispositionTwo(){
-        subviewFour.isHidden = true
-        
-        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        subviewOne.backgroundColor = UIColor.white
-        shareView.addSubview(subviewOne)
-        launchAction(sender: subviewOne)
-        
-        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        subviewTwo.backgroundColor = UIColor.white
-        launchAction(sender: subviewTwo)
-        shareView.addSubview(subviewTwo)
-        
-        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        subviewThree.backgroundColor = UIColor.white
-        launchAction(sender: subviewThree)
-        shareView.addSubview(subviewThree)
-        
-        
-        let tabView = [subviewOne,subviewTwo]
-        
-        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
-        
-        
-        let princView = [tabViewStackView,subviewThree]
-        
-        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
-        
-        shareView.addSubview(stackViewSecond)
-        
-        stackViewContraint(stackView: stackViewSecond)
-        
-    }
-    
-    // this method allow to display view three disposition.
-    func viewDispositionThree(){
-        subviewFour.isHidden = false
-        
-        subviewOne.setImage(imageSave.setButtonImage(viewNumber: 1), for: .normal)
-        subviewOne.backgroundColor = UIColor.white
-        shareView.addSubview(subviewOne)
-        launchAction(sender: subviewOne)
-        
-        subviewTwo.setImage(imageSave.setButtonImage(viewNumber: 2), for: .normal)
-        subviewTwo.backgroundColor = UIColor.white
-        launchAction(sender: subviewTwo)
-        shareView.addSubview(subviewTwo)
-        
-        subviewThree.setImage(imageSave.setButtonImage(viewNumber: 3), for: .normal)
-        subviewThree.backgroundColor = UIColor.white
-        launchAction(sender: subviewThree)
-        shareView.addSubview(subviewThree)
-        
-        subviewFour.setImage(imageSave.setButtonImage(viewNumber: 4), for: .normal)
-        subviewFour.backgroundColor = UIColor.white
-        launchAction(sender: subviewFour)
-        shareView.addSubview(subviewFour)
-        
-        
-        let tabView = [subviewOne,subviewTwo]
-        let tabsubviewTwo = [subviewThree,subviewFour]
-        
-        let tabViewStackView = defineStackView(viewArray: tabView, axe : .horizontal)
-        
-        let tabsubviewTwoStackView = defineStackView(viewArray:tabsubviewTwo, axe : .horizontal)
-        
-        
-        let princView = [tabViewStackView,tabsubviewTwoStackView]
-        
-        let stackViewSecond = defineStackView(viewArray: princView, axe : .vertical)
-        
-        shareView.addSubview(stackViewSecond)
-        
-        stackViewContraint(stackView: stackViewSecond)
         
     }
     
@@ -485,20 +338,6 @@ UINavigationControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         modifiedButton.setImage(image, for: .normal)
-        
-        if modifiedButton == subviewOne {
-            imageSave.imageArray[1] = image
-            print("subviewOne")
-        } else if modifiedButton == subviewTwo {
-            imageSave.imageArray[2] = image
-            print("subviewTwo")
-        } else if modifiedButton == subviewThree {
-            imageSave.imageArray[3] = image
-            print("subviewThree")
-        } else {
-            imageSave.imageArray[4] = image
-            print("subviewFour")
-        }
         
         dismiss(animated:true, completion: nil)
     }
