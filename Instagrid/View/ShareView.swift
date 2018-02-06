@@ -8,9 +8,10 @@
 
 import UIKit
 
+//This class allows view management in shareview.
 class ShareView: UIView {
     
-    //MARK: Outlets
+    //MARK: Properties
     @IBOutlet private var mainStackView : UIStackView!
     @IBOutlet private var topStackView : UIStackView!
     @IBOutlet private var bottomStackView : UIStackView!
@@ -19,6 +20,7 @@ class ShareView: UIView {
     @IBOutlet private var BottomLeftButton : UIButton!
     @IBOutlet private var bottomRightButton : UIButton!
     
+    //This method allows the display of the layout of the views choosen.
     func setViews(topHidden : Bool , bottomHidden : Bool) {
         topLeftButton.isHidden = topHidden
         BottomLeftButton.isHidden = bottomHidden

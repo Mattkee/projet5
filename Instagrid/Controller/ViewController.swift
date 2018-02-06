@@ -15,7 +15,7 @@ UINavigationControllerDelegate {
     // this is an instance for class ImageSave
     var imageSave = ImageSave()
     
-    // this outlet allow to connect storyboard object to viewController.
+    //MARK: Properties
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var slideView: UIView!
     @IBOutlet weak var blurViewLeft: UIVisualEffectView!
@@ -31,6 +31,12 @@ UINavigationControllerDelegate {
     @IBOutlet weak var textContentLabel: UILabel!
     @IBOutlet weak var textContentSpace: UITextField!
     @IBOutlet weak var changeText: UIButton!
+    @IBOutlet weak var shareView: ShareView!
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var actionShareView: UIView!
+    @IBOutlet weak var viewDispositionButtonOne: UIButton!
+    @IBOutlet weak var viewDispositionButtonTwo: UIButton!
+    @IBOutlet weak var viewDispositionButtonThree: UIButton!
     
     // in this override func contains Any property or actions that must be launched or available as soon as the app is launched.
     override func viewDidLoad() {
@@ -111,17 +117,22 @@ UINavigationControllerDelegate {
         }
     }
     
-    // this outlet allow to connect actionshareview and shareview to viewcontroller.
-    @IBOutlet weak var shareView: ShareView!
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var actionShareView: UIView!
-    @IBOutlet weak var viewDispositionButtonOne: UIButton!
-    @IBOutlet weak var viewDispositionButtonTwo: UIButton!
-    @IBOutlet weak var viewDispositionButtonThree: UIButton!
-    
     // this property is use when subview button is pressed.
     var modifiedButton : UIButton!
     
+    //this method allows to display buttons set image.
+    func viewDispositionButtonImage(buttonOne : Bool, buttonTwo : Bool, buttonThree : Bool) {
+        viewDispositionButtonOne.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
+        viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
+        viewDispositionButtonThree.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
+        viewDispositionButtonOne.isSelected = buttonOne
+        viewDispositionButtonTwo.isSelected = buttonTwo
+        viewDispositionButtonThree.isSelected = buttonThree
+    }
+    
+    //MARK: Actions
+    
+    //this method display shareview disposition view and viewdispositionbutton image.
     @IBAction func setLayout(_ sender: UIButton) {
         
         switch sender.tag {
@@ -138,6 +149,8 @@ UINavigationControllerDelegate {
             print("error")
         }
     }
+    
+    //This method allows to appear downslide.
     @IBAction func setButtonImage(_ sender: UIButton) {
         
         switch sender.tag {
@@ -149,14 +162,6 @@ UINavigationControllerDelegate {
         }
     }
     
-    func viewDispositionButtonImage(buttonOne : Bool, buttonTwo : Bool, buttonThree : Bool) {
-        viewDispositionButtonOne.setImage(#imageLiteral(resourceName: "Carre1Selec"), for: .selected)
-        viewDispositionButtonTwo.setImage(#imageLiteral(resourceName: "Carre2Selec"), for: .selected)
-        viewDispositionButtonThree.setImage(#imageLiteral(resourceName: "Carre3Selec"), for: .selected)
-        viewDispositionButtonOne.isSelected = buttonOne
-        viewDispositionButtonTwo.isSelected = buttonTwo
-        viewDispositionButtonThree.isSelected = buttonThree
-    }
     // this action method allow to call openCameraButton function.
     @IBAction func openCamera(_ sender: UIButton) {
         
