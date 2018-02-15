@@ -8,6 +8,7 @@
 
 import UIKit
 
+// This class allows management of option text.
 class optionTextSlide: UIView {
 
     //MARK: Properties
