@@ -28,6 +28,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var viewDispositionButtonThree: UIButton!
     @IBOutlet weak var leadingSlideLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomSlideDownConstraint: NSLayoutConstraint!
+    @IBOutlet var button: [UIButton]!
     
     // in this override func contains Any property or actions that must be launched or available as soon as the app is launched.
     override func viewDidLoad() {
@@ -93,8 +94,18 @@ UINavigationControllerDelegate {
         case .landscapeLeft, .landscapeRight:
             print("Landscape left")
             textLabel.text = "Swipe Left to share"
+            for button in button {
+                if button.imageView?.image == #imageLiteral(resourceName: "croixbleuseule") {
+                    button.setImage(#imageLiteral(resourceName: "croixGriseSeule"), for: .normal)
+                }
+            }
         case .portrait:
             textLabel.text = "Swipe up to share"
+            for button in button {
+                if button.imageView?.image == #imageLiteral(resourceName: "croixGriseSeule") {
+                    button.setImage(#imageLiteral(resourceName: "croixbleuseule"), for: .normal)
+                }
+            }
         case .portraitUpsideDown:
             print("Portrait upside down")
         }
