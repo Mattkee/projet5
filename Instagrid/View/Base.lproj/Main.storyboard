@@ -233,7 +233,7 @@
                                 <variation key="heightClass=compact" axis="vertical"/>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpp-1t-7Vc">
-                                <rect key="frame" x="0.0" y="586" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="736" width="414" height="150"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoX-fM-LbZ">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
@@ -307,8 +307,8 @@
                                     <constraint firstItem="MoX-fM-LbZ" firstAttribute="centerX" secondItem="Tpp-1t-7Vc" secondAttribute="centerX" id="hzG-zh-u14"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWP-iW-Wur">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="736"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWP-iW-Wur" customClass="optionTextSlide" customModule="Instagrid" customModuleProvider="target">
+                                <rect key="frame" x="-250" y="0.0" width="250" height="736"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieh-7z-LeA">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="736"/>
@@ -319,7 +319,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X9K-xQ-pP4">
                                                     <rect key="frame" x="176" y="25" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="optionTextAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="wd7-bb-2dK"/>
+                                                        <action selector="optionTextAction:" destination="tWP-iW-Wur" eventType="valueChanged" id="MjP-12-TJT"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add options texts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsW-aJ-Hf9">
@@ -335,7 +335,7 @@
                                                         <segment title="Down"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="topDownSelectorAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="i2F-58-9g4"/>
+                                                        <action selector="topDownSelectorAction:" destination="tWP-iW-Wur" eventType="valueChanged" id="aVU-XP-83j"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DU-y8-Sh9">
@@ -357,7 +357,7 @@
                                                         <segment title="White"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="blackWhiteSelectorAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="F4e-hd-5rY"/>
+                                                        <action selector="blackWhiteSelectorAction:" destination="tWP-iW-Wur" eventType="valueChanged" id="NOE-qH-OdR"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2oa-Gt-Yol">
@@ -367,7 +367,7 @@
                                                         <segment title="Right"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="leftRightSelectorAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="b8D-ld-vHk"/>
+                                                        <action selector="leftRightSelectorAction:" destination="tWP-iW-Wur" eventType="valueChanged" id="amb-4F-qpj"/>
                                                     </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text content" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qn-Cg-QtE">
@@ -394,7 +394,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="changeTextAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fpl-Ax-K82"/>
+                                                        <action selector="changeTextAction:" destination="tWP-iW-Wur" eventType="touchUpInside" id="8u5-zH-uwu"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -443,12 +443,22 @@
                                     </visualEffectView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="5Ze-CB-GXC"/>
                                     <constraint firstItem="ieh-7z-LeA" firstAttribute="leading" secondItem="tWP-iW-Wur" secondAttribute="leading" id="HFf-2p-dXK"/>
                                     <constraint firstAttribute="bottom" secondItem="ieh-7z-LeA" secondAttribute="bottom" id="Pbk-8P-5Cf"/>
-                                    <constraint firstAttribute="width" constant="250" id="ahA-1n-Obq"/>
                                     <constraint firstItem="ieh-7z-LeA" firstAttribute="centerX" secondItem="tWP-iW-Wur" secondAttribute="centerX" id="cgA-em-e9V"/>
                                     <constraint firstItem="ieh-7z-LeA" firstAttribute="top" secondItem="tWP-iW-Wur" secondAttribute="top" id="djI-up-kxh"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="blackWhiteSelector" destination="92S-l5-m6F" id="e3G-kl-oKD"/>
+                                    <outlet property="changeText" destination="Vtd-vw-n8c" id="1BX-QY-xNh"/>
+                                    <outlet property="customText" destination="U2Q-1M-gpz" id="yyP-ob-wJL"/>
+                                    <outlet property="customText2" destination="8ep-IR-hpD" id="Il6-8Y-e5h"/>
+                                    <outlet property="leftRightSelector" destination="2oa-Gt-Yol" id="IhW-JG-de6"/>
+                                    <outlet property="optionText" destination="X9K-xQ-pP4" id="JJi-bS-DpS"/>
+                                    <outlet property="textContentSpace" destination="vpX-hc-KEg" id="ekG-yc-nFy"/>
+                                    <outlet property="topDownSelector" destination="ND2-a1-LPP" id="cAm-PP-AWh"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.74935835599899292" green="0.86280602216720581" blue="0.9110904335975647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -479,7 +489,7 @@
                             <constraint firstAttribute="bottom" secondItem="tWP-iW-Wur" secondAttribute="bottom" id="Ta7-mh-ZP8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tZq-uM-6yk" secondAttribute="bottom" constant="15" id="TiF-gY-ZhJ"/>
                             <constraint firstItem="Hex-CX-QjI" firstAttribute="top" secondItem="tZq-uM-6yk" secondAttribute="bottom" constant="8" id="XI1-iE-W5P"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Tpp-1t-7Vc" secondAttribute="bottom" id="ZBH-ob-6rA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Tpp-1t-7Vc" secondAttribute="bottom" constant="-150" id="ZBH-ob-6rA"/>
                             <constraint firstItem="tZq-uM-6yk" firstAttribute="leading" secondItem="209-lc-BIX" secondAttribute="trailing" constant="5" id="b0V-5A-6Ib"/>
                             <constraint firstItem="tZq-uM-6yk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="b3q-Rx-86W"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hex-CX-QjI" secondAttribute="bottom" constant="8" id="eKw-ZS-djG"/>
@@ -494,7 +504,7 @@
                             <constraint firstItem="3PR-Yf-yDR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pYb-xr-KwB">
                                 <variation key="heightClass=compact" constant="20"/>
                             </constraint>
-                            <constraint firstItem="tWP-iW-Wur" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="r4A-xL-FIu"/>
+                            <constraint firstItem="tWP-iW-Wur" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-250" id="r4A-xL-FIu"/>
                             <constraint firstItem="209-lc-BIX" firstAttribute="leading" secondItem="tZq-uM-6yk" secondAttribute="leading" id="tkO-WM-csE"/>
                             <constraint firstItem="tZq-uM-6yk" firstAttribute="bottom" secondItem="209-lc-BIX" secondAttribute="bottom" id="xwH-Zq-jjC"/>
                             <constraint firstItem="Hex-CX-QjI" firstAttribute="bottom" secondItem="tZq-uM-6yk" secondAttribute="bottom" id="y25-Qx-GzZ"/>
@@ -557,23 +567,17 @@
                     </view>
                     <connections>
                         <outlet property="actionShareView" destination="209-lc-BIX" id="zb8-QM-91w"/>
-                        <outlet property="blackWhiteSelector" destination="92S-l5-m6F" id="8Aq-lv-Y3e"/>
                         <outlet property="blurView" destination="MoX-fM-LbZ" id="pVo-zN-buz"/>
                         <outlet property="blurViewLeft" destination="ieh-7z-LeA" id="NzT-X9-24r"/>
-                        <outlet property="changeText" destination="Vtd-vw-n8c" id="YRa-CT-qpb"/>
+                        <outlet property="bottomSlideDownConstraint" destination="ZBH-ob-6rA" id="fTB-nr-L6w"/>
                         <outlet property="customText" destination="U2Q-1M-gpz" id="Z9C-j8-um5"/>
                         <outlet property="customText2" destination="8ep-IR-hpD" id="3yF-GF-l2z"/>
-                        <outlet property="leftRightSelector" destination="2oa-Gt-Yol" id="TCe-6q-UAe"/>
-                        <outlet property="optionText" destination="X9K-xQ-pP4" id="hZ5-c1-HnW"/>
+                        <outlet property="leadingSlideLeftConstraint" destination="r4A-xL-FIu" id="gWi-jn-I8u"/>
+                        <outlet property="optionText" destination="X9K-xQ-pP4" id="GEE-WV-MHu"/>
                         <outlet property="shareView" destination="tZq-uM-6yk" id="OMA-qd-cqk"/>
                         <outlet property="slideView" destination="Tpp-1t-7Vc" id="ug0-lf-p5j"/>
                         <outlet property="slideViewLeft" destination="tWP-iW-Wur" id="tye-L0-7aX"/>
-                        <outlet property="textColorLabel" destination="j01-yx-zkd" id="f5A-J1-s2Q"/>
-                        <outlet property="textContentLabel" destination="7qn-Cg-QtE" id="c1x-Ww-vS4"/>
-                        <outlet property="textContentSpace" destination="vpX-hc-KEg" id="QhE-de-Rk7"/>
                         <outlet property="textLabel" destination="Azy-P3-PfV" id="Uc4-8s-Kcu"/>
-                        <outlet property="textPositionLabel" destination="0DU-y8-Sh9" id="8Zp-ax-o5H"/>
-                        <outlet property="topDownSelector" destination="ND2-a1-LPP" id="SiF-Sp-Qyu"/>
                         <outlet property="viewDispositionButtonOne" destination="HA9-Js-GOQ" id="PpV-eF-TFL"/>
                         <outlet property="viewDispositionButtonThree" destination="2AE-Ry-tHw" id="zju-vG-WC3"/>
                         <outlet property="viewDispositionButtonTwo" destination="csX-Nj-71X" id="qj9-M7-agR"/>

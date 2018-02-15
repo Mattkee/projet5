@@ -11,38 +11,32 @@ import UIKit
 class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
-
-    // this is an instance for class ImageSave
-    var imageSave = ImageSave()
     
     //MARK: Properties
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var slideView: UIView!
     @IBOutlet weak var blurViewLeft: UIVisualEffectView!
-    @IBOutlet weak var slideViewLeft: UIView!
+    @IBOutlet weak var slideViewLeft: optionTextSlide!
     @IBOutlet weak var customText: UILabel!
     @IBOutlet weak var customText2: UILabel!
     @IBOutlet weak var optionText: UISwitch!
-    @IBOutlet weak var textPositionLabel: UILabel!
-    @IBOutlet weak var topDownSelector: UISegmentedControl!
-    @IBOutlet weak var leftRightSelector: UISegmentedControl!
-    @IBOutlet weak var textColorLabel: UILabel!
-    @IBOutlet weak var blackWhiteSelector: UISegmentedControl!
-    @IBOutlet weak var textContentLabel: UILabel!
-    @IBOutlet weak var textContentSpace: UITextField!
-    @IBOutlet weak var changeText: UIButton!
     @IBOutlet weak var shareView: ShareView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var actionShareView: UIView!
     @IBOutlet weak var viewDispositionButtonOne: UIButton!
     @IBOutlet weak var viewDispositionButtonTwo: UIButton!
     @IBOutlet weak var viewDispositionButtonThree: UIButton!
+    @IBOutlet weak var leadingSlideLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomSlideDownConstraint: NSLayoutConstraint!
     
     // in this override func contains Any property or actions that must be launched or available as soon as the app is launched.
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // these property concern slide allows to choose camera or library, must not appear when app is launched
+        leadingSlideLeftConstraint.constant = 0
+        bottomSlideDownConstraint.constant = 0
+        
         blurView.layer.cornerRadius = 15
         var translationTransform: CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
@@ -55,19 +49,8 @@ UINavigationControllerDelegate {
         self.slideViewLeft.transform = translationTransformLeft
         
         // These lines will allow you to hide or set up the initial configuration of the different options for the text.
-        topDownSelector.selectedSegmentIndex = 1
-        leftRightSelector.selectedSegmentIndex = 1
-        blackWhiteSelector.selectedSegmentIndex = 1
         customText.isHidden = true
         customText2.isHidden = true
-        textPositionLabel.isHidden = true
-        topDownSelector.isHidden = true
-        leftRightSelector.isHidden = true
-        textColorLabel.isHidden = true
-        blackWhiteSelector.isHidden = true
-        textContentLabel.isHidden = true
-        textContentSpace.isHidden = true
-        changeText.isHidden = true
         
         // for observe device orientation.
         NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -134,7 +117,6 @@ UINavigationControllerDelegate {
     
     //this method display shareview disposition view and viewdispositionbutton image.
     @IBAction func setLayout(_ sender: UIButton) {
-        
         switch sender.tag {
         case 1:
             shareView.setViews(topHidden: true, bottomHidden: false)
@@ -152,7 +134,6 @@ UINavigationControllerDelegate {
     
     //This method allows to appear downslide.
     @IBAction func setButtonImage(_ sender: UIButton) {
-        
         switch sender.tag {
             case 1, 2, 3, 4:
                 modifiedButton = sender
@@ -164,7 +145,6 @@ UINavigationControllerDelegate {
     
     // this action method allow to call openCameraButton function.
     @IBAction func openCamera(_ sender: UIButton) {
-        
         openCameraButton(sender: modifiedButton)
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
@@ -176,7 +156,6 @@ UINavigationControllerDelegate {
     
     // this action method allow to call openphotolibrarybutton function.
     @IBAction func openPhotoLibrary(_ sender: UIButton) {
-        
         openPhotoLibraryButton(sender: modifiedButton)
         var translationTransform : CGAffineTransform
         translationTransform = CGAffineTransform(translationX: 0, y: 150)
@@ -194,79 +173,6 @@ UINavigationControllerDelegate {
         UIView.animate(withDuration: 0.5, animations: {
             self.slideView.transform = translationTransform
         })
-        
-    }
-    
-    // this action method active or desactive option text space.
-    @IBAction func optionTextAction(_ sender: Any) {
-        if optionText.isOn == true {
-            customText.isHidden = false
-            customText.layer.zPosition = 1
-            textPositionLabel.isHidden = false
-            topDownSelector.isHidden = false
-            leftRightSelector.isHidden = false
-            textColorLabel.isHidden = false
-            blackWhiteSelector.isHidden = false
-            textContentLabel.isHidden = false
-            textContentSpace.isHidden = false
-            changeText.isHidden = false
-            
-        } else {
-            customText.isHidden = true
-            customText2.isHidden = true
-            textPositionLabel.isHidden = true
-            topDownSelector.isHidden = true
-            leftRightSelector.isHidden = true
-            textColorLabel.isHidden = true
-            blackWhiteSelector.isHidden = true
-            textContentLabel.isHidden = true
-            textContentSpace.isHidden = true
-            changeText.isHidden = true
-        }
-    }
-    
-    // this action method allow custom text disposition.
-    @IBAction func topDownSelectorAction(_ sender: UISegmentedControl) {
-        if topDownSelector.selectedSegmentIndex == 0 {
-            customText2.isHidden = false
-            customText.isHidden = true
-            customText2.layer.zPosition = 1
-        } else if topDownSelector.selectedSegmentIndex == 1 {
-            customText2.isHidden = true
-            customText.isHidden = false
-            customText.layer.zPosition = 1
-        }
-    }
-    
-    // this action method allow custom text disposition.
-    @IBAction func leftRightSelectorAction(_ sender: UISegmentedControl) {
-        if leftRightSelector.selectedSegmentIndex == 0 {
-            customText.textAlignment = .left
-            customText2.textAlignment = .left
-        } else if leftRightSelector.selectedSegmentIndex == 1 {
-            customText.textAlignment = .right
-            customText2.textAlignment = .right
-        }
-    }
-    
-    // this action method allow custom text color.
-    @IBAction func blackWhiteSelectorAction(_ sender: UISegmentedControl) {
-        if blackWhiteSelector.selectedSegmentIndex == 0 {
-            customText.textColor = UIColor.black
-            customText2.textColor = UIColor.black
-        } else if blackWhiteSelector.selectedSegmentIndex == 1 {
-            customText.textColor = UIColor.white
-            customText2.textColor = UIColor.white
-        }
-    }
-    
-    // this action method allow custom text content.
-    @IBAction func changeTextAction(_ sender: UIButton) {
-        
-        customText.text = textContentSpace.text
-        customText2.text = textContentSpace.text
-        textContentSpace.endEditing(true)
-        
     }
     
     // perform operation when left edge gesture detected on portrait mode
@@ -313,7 +219,6 @@ UINavigationControllerDelegate {
         UIView.animate(withDuration: 0.5, animations: {
             self.slideView.transform = translationTransform
         })
-        
     }
     
     // this method allow to use camera.
@@ -343,7 +248,7 @@ UINavigationControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         modifiedButton.setImage(image, for: .normal)
-        
+        modifiedButton.imageView?.contentMode = .scaleAspectFill
         dismiss(animated:true, completion: nil)
     }
     
@@ -354,39 +259,34 @@ UINavigationControllerDelegate {
             switch UIDevice.current.orientation {
                 case .portrait :
                     let translation = gesture.translation(in: actionShareView)
-                    
                     if translation.y < 0 {
                         transformShareContentViewWith(gesture: gesture)
                     }
                 case .landscapeLeft, .landscapeRight :
                     let translation = gesture.translation(in: actionShareView)
-                    
                     if translation.x < 0 {
                         transformShareContentViewWith(gesture: gesture)
-                    }
-                    if translation.x > 0 {
+                    } else if translation.x > 0 {
                         handleLeftAppearPan(gesture)
                     }
-            default :
+                default :
                     transformShareContentViewWith(gesture: gesture)
                 }
         case .ended, .cancelled :
             switch UIDevice.current.orientation {
-            case .portrait :
-                let translation = gesture.translation(in: actionShareView)
-                
-                if translation.y < 0 {
+                case .portrait :
+                    let translation = gesture.translation(in: actionShareView)
+                    if translation.y < 0 {
                    share()
+                    }
+                case .landscapeLeft, .landscapeRight :
+                    let translation = gesture.translation(in: actionShareView)
+                    if translation.x < 0 {
+                        share()
+                    }
+                default :
+                    break
                 }
-            case .landscapeLeft, .landscapeRight :
-                let translation = gesture.translation(in: actionShareView)
-                
-                if translation.x < 0 {
-                   share()
-                }
-            default :
-                break
-            }
         default:
             break
         }
@@ -394,7 +294,6 @@ UINavigationControllerDelegate {
     
     // this method allow to transform share gesture animation.
     func transformShareContentViewWith(gesture: UIPanGestureRecognizer){
-        
         switch UIDevice.current.orientation {
             case .portrait :
                 let translation = gesture.translation(in: actionShareView)
@@ -423,20 +322,11 @@ UINavigationControllerDelegate {
         let image = UIImage.imageWithView(view: shareView)
         
         let contentToShare = [image]
-        imageSave.imageArray = [Int : UIImage]()
         
         optionText.setOn(false, animated: false)
         
         customText.isHidden = true
         customText2.isHidden = true
-        textPositionLabel.isHidden = true
-        topDownSelector.isHidden = true
-        leftRightSelector.isHidden = true
-        textColorLabel.isHidden = true
-        blackWhiteSelector.isHidden = true
-        textContentLabel.isHidden = true
-        textContentSpace.isHidden = true
-        changeText.isHidden = true
         
         let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)

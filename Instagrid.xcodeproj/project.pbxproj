@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1499B42035F5AD0002EBA0 /* optionTextSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1499B32035F5AD0002EBA0 /* optionTextSlide.swift */; };
 		AF87EDF7201A34AE00747EFD /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF87EDF6201A34AE00747EFD /* ShareView.swift */; };
-		AF87EDF9201A34CC00747EFD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF87EDF8201A34CC00747EFD /* SecondViewController.swift */; };
 		AF8999B11FCF869600CCB741 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8999B01FCF869600CCB741 /* AppDelegate.swift */; };
 		AF8999B31FCF869600CCB741 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8999B21FCF869600CCB741 /* ViewController.swift */; };
 		AF8999B61FCF869600CCB741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B41FCF869600CCB741 /* Main.storyboard */; };
 		AF8999B81FCF869600CCB741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B71FCF869600CCB741 /* Assets.xcassets */; };
 		AF8999BB1FCF869600CCB741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B91FCF869600CCB741 /* LaunchScreen.storyboard */; };
-		AFA38D162007734300363C79 /* ImageSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA38D152007734300363C79 /* ImageSave.swift */; };
 		AFFAA1041FD01E6300517109 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */; };
 		AFFAA1051FD01E6300517109 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1031FD01E6300517109 /* Delm-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF1499B32035F5AD0002EBA0 /* optionTextSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionTextSlide.swift; sourceTree = "<group>"; };
 		AF87EDF6201A34AE00747EFD /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		AF87EDF8201A34CC00747EFD /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		AF8999AD1FCF869600CCB741 /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8999B01FCF869600CCB741 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF8999B21FCF869600CCB741 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,7 +28,6 @@
 		AF8999B71FCF869600CCB741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF8999BA1FCF869600CCB741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF8999BC1FCF869600CCB741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AFA38D152007734300363C79 /* ImageSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSave.swift; sourceTree = "<group>"; };
 		AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		AFFAA1031FD01E6300517109 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,7 +73,6 @@
 		AFA38D172008194000363C79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AFA38D152007734300363C79 /* ImageSave.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -85,6 +82,7 @@
 			children = (
 				AF8999B41FCF869600CCB741 /* Main.storyboard */,
 				AF87EDF6201A34AE00747EFD /* ShareView.swift */,
+				AF1499B32035F5AD0002EBA0 /* optionTextSlide.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				AF8999B21FCF869600CCB741 /* ViewController.swift */,
-				AF87EDF8201A34CC00747EFD /* SecondViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,9 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF87EDF7201A34AE00747EFD /* ShareView.swift in Sources */,
-				AFA38D162007734300363C79 /* ImageSave.swift in Sources */,
+				AF1499B42035F5AD0002EBA0 /* optionTextSlide.swift in Sources */,
 				AF8999B31FCF869600CCB741 /* ViewController.swift in Sources */,
-				AF87EDF9201A34CC00747EFD /* SecondViewController.swift in Sources */,
 				AF8999B11FCF869600CCB741 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
