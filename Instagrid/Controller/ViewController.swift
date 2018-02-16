@@ -288,7 +288,7 @@ UINavigationControllerDelegate {
                 case .portrait :
                     let translation = gesture.translation(in: actionShareView)
                     if translation.y < 0 {
-                   share()
+                        share()
                     }
                 case .landscapeLeft, .landscapeRight :
                     let translation = gesture.translation(in: actionShareView)
@@ -323,7 +323,6 @@ UINavigationControllerDelegate {
             default :
                 break
         }
-        
     }
     
     // this method allow to share content.
@@ -341,28 +340,7 @@ UINavigationControllerDelegate {
         
         let activityViewController = UIActivityViewController(activityItems: contentToShare, applicationActivities: nil)
             present(activityViewController, animated: true, completion: nil)
-        
     }
 }
 
-// this extension allow us to transform UIview to UIimage.
-extension UIImage {
-    class func imageWithView(view: UIView) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
-    }
-}
 
-// this extension allow to ajuste uiimagepickercontroller according to orientation device.
-extension UIImagePickerController
-{
-    override open var shouldAutorotate: Bool {
-        return true
-    }
-    override open var supportedInterfaceOrientations : UIInterfaceOrientationMask {
-        return .all
-    }
-}

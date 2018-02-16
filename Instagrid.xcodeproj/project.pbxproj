@@ -14,6 +14,8 @@
 		AF8999B61FCF869600CCB741 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B41FCF869600CCB741 /* Main.storyboard */; };
 		AF8999B81FCF869600CCB741 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B71FCF869600CCB741 /* Assets.xcassets */; };
 		AF8999BB1FCF869600CCB741 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF8999B91FCF869600CCB741 /* LaunchScreen.storyboard */; };
+		AFBBB95220376E80002C01C8 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBBB95120376E80002C01C8 /* UIImage + Extension.swift */; };
+		AFBBB95620376EDA002C01C8 /* UIImagePickerController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBBB95520376EDA002C01C8 /* UIImagePickerController + Extension.swift */; };
 		AFFAA1041FD01E6300517109 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */; };
 		AFFAA1051FD01E6300517109 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFFAA1031FD01E6300517109 /* Delm-Medium.otf */; };
 /* End PBXBuildFile section */
@@ -28,6 +30,8 @@
 		AF8999B71FCF869600CCB741 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF8999BA1FCF869600CCB741 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF8999BC1FCF869600CCB741 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFBBB95120376E80002C01C8 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		AFBBB95520376EDA002C01C8 /* UIImagePickerController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController + Extension.swift"; sourceTree = "<group>"; };
 		AFFAA1021FD01E6300517109 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		AFFAA1031FD01E6300517109 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +87,7 @@
 				AF8999B41FCF869600CCB741 /* Main.storyboard */,
 				AF87EDF6201A34AE00747EFD /* ShareView.swift */,
 				AF1499B32035F5AD0002EBA0 /* optionTextSlide.swift */,
+				AFBBB95120376E80002C01C8 /* UIImage + Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8999B21FCF869600CCB741 /* ViewController.swift */,
+				AFBBB95520376EDA002C01C8 /* UIImagePickerController + Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,8 +189,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF87EDF7201A34AE00747EFD /* ShareView.swift in Sources */,
+				AFBBB95620376EDA002C01C8 /* UIImagePickerController + Extension.swift in Sources */,
 				AF1499B42035F5AD0002EBA0 /* optionTextSlide.swift in Sources */,
 				AF8999B31FCF869600CCB741 /* ViewController.swift in Sources */,
+				AFBBB95220376E80002C01C8 /* UIImage + Extension.swift in Sources */,
 				AF8999B11FCF869600CCB741 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
