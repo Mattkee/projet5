@@ -26,8 +26,8 @@ class optionTextSlide: UIView {
     // this action method active or desactive option text space.
     @IBAction func optionTextAction(_ sender: UISwitch) {
         if sender.isOn == true {
-            customText.isHidden = false
-            customText.layer.zPosition = 1
+            customText2.isHidden = false
+            customText2.layer.zPosition = 1
             
         } else {
             customText.isHidden = true
